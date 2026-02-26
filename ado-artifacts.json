@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-02-21T00:00:00",
+  "ado_org": "https://dev.azure.com/marcopresta",
+  "ado_project": "eva-poc",
+  "github_repo": "eva-foundry/36-red-teaming",
+  "project_maturity": "active",
+
+  "epic": {
+    "skip_if_id_exists": null,
+    "type": "Epic",
+    "title": "Red Teaming & Evaluation Framework",
+    "description": "Deterministic red-teaming harness using Promptfoo for EVA and AI Answers backends. Treats backend as black-box HTTP provider. Operationalizes MITRE ATLAS, OWASP LLM Top 10, AICM, ITSG-33, and NIST AI RMF. Produces ATO-ready evidence packs. MVP complete 2026-02-17.",
+    "tags": "red-teaming;36",
+    "area_path": "eva-poc"
+  },
+
+  "features": [
+    {
+      "id_hint": "rt-harness",
+      "type": "Feature",
+      "title": "Promptfoo Harness & HTTP Provider",
+      "description": "Promptfoo config, eva-http.js provider, deterministic assertions module. Smoke suite blocks PRs. Golden suite runs nightly.",
+      "tags": "red-teaming;rt-harness",
+      "parent": "epic"
+    },
+    {
+      "id_hint": "rt-atlas-suites",
+      "type": "Feature",
+      "title": "MITRE ATLAS Test Suites",
+      "description": "atlas-defense-evasion.yaml, atlas-discovery.yaml, atlas-exfiltration.yaml. MVP covers 4 of 16 ATLAS tactics. Phase 2 adds 7 more tactics.",
+      "tags": "red-teaming;rt-atlas-suites",
+      "parent": "epic"
+    },
+    {
+      "id_hint": "rt-cicd",
+      "type": "Feature",
+      "title": "CI/CD Gate & Evidence Pack",
+      "description": "redteam-smoke.yml (PR gate, blocking) and redteam-nightly.yml (scheduled, non-blocking). build-evidence-pack.ps1 generates ATO-ready artifacts per run.",
+      "tags": "red-teaming;rt-cicd",
+      "parent": "epic"
+    }
+  ],
+
+  "user_stories": [
+    {
+      "id_hint": "rt-wi-0",
+      "type": "Product Backlog Item",
+      "title": "[RT-WI-0] MVP complete — Promptfoo harness, ATLAS suites, CI gate, evidence pack",
+      "acceptance_criteria": "Smoke suite implemented and blocks PRs. ATLAS Defense Evasion (15-30 tests), Discovery (10-20), Exfiltration (15-30) suites created. Evidence pack generated per run. ATLAS-MAPPING.md documents all 16 tactics.",
+      "tags": "red-teaming;rt-wi-0",
+      "iteration_path": "eva-poc\\Sprint-Backlog",
+      "state": "Done",
+      "parent": "rt-harness",
+      "evidence": { "test_count": null, "coverage_pct": null, "notes": "MVP complete 2026-02-17. Folder scaffolded. ATLAS 4/16 tactics covered." }
+    },
+    {
+      "id_hint": "rt-wi-1",
+      "type": "Product Backlog Item",
+      "title": "[RT-WI-1] Phase 2 — LLM judge evaluators, 7 additional ATLAS tactics",
+      "acceptance_criteria": "LLM-based evaluation judges added (beyond deterministic MVP). Reconnaissance, Initial Access, Execution, Privilege Escalation, Credential Access, Collection, Impact tactics covered.",
+      "tags": "red-teaming;rt-wi-1",
+      "iteration_path": "eva-poc\\Sprint-Backlog",
+      "state": "New",
+      "parent": "rt-atlas-suites",
+      "evidence": { "test_count": null, "coverage_pct": null, "notes": "Roadmap Phase 2. No sprint assigned yet." }
+    }
+  ],
+
+  "sprints_needed": [
+    { "name": "Sprint-Backlog", "start_date": null, "finish_date": null }
+  ]
+}

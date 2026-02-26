@@ -1,0 +1,34 @@
+{
+  "name": "eva-redteam-harness",
+  "version": "1.0.0",
+  "description": "Promptfoo-based red teaming and evaluation harness for EVA/AI Answers backends",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test:smoke": "promptfoo eval -c suites/smoke.yaml",
+    "test:golden": "promptfoo eval -c suites/golden.yaml",
+    "test:atlas-defense": "promptfoo eval -c suites/atlas-defense-evasion.yaml",
+    "test:atlas-discovery": "promptfoo eval -c suites/atlas-discovery.yaml",
+    "test:atlas-exfil": "promptfoo eval -c suites/atlas-exfiltration.yaml",
+    "test:all": "npm run test:smoke && npm run test:golden && npm run test:atlas-defense && npm run test:atlas-discovery && npm run test:atlas-exfil",
+    "test": "vitest run"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "promptfoo": "^0.100.0",
+    "vitest": "^1.6.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "red-team",
+    "evaluation",
+    "promptfoo",
+    "eva",
+    "security",
+    "atlas"
+  ],
+  "author": "AICOE",
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,745 @@
+{
+  "meta": {
+    "schema": "eva.discovery.v2",
+    "generated_at": "2026-02-25T06:37:38.041Z",
+    "repo": "C:\\AICOE\\eva-foundation\\36-red-teaming"
+  },
+  "project": null,
+  "planned": {
+    "epic": {
+      "title": "🧠 EVA Project 36: Red Teaming & Evaluation Framework",
+      "source": "README.md"
+    },
+    "features": [
+      {
+        "id": "F36-01",
+        "title": "?? Overview",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-02",
+        "title": "?? Security & ATO Context",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-03",
+        "title": "?? Purpose",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-04",
+        "title": "?? Principles",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-05",
+        "title": "??? Architecture",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-06",
+        "title": "?? Project Structure",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-07",
+        "title": "?? Quick Start",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-08",
+        "title": "?? Test Suites",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-09",
+        "title": "?? Deterministic Assertions",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-10",
+        "title": "?? Evidence Pack (ATO-Ready)",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-11",
+        "title": "?? CI/CD Integration",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-12",
+        "title": "?? Standards Mapping",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-13",
+        "title": "?? Non-Goals (MVP)",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-14",
+        "title": "?? Definition of Done (MVP)",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-15",
+        "title": "??? Roadmap",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-16",
+        "title": "?? Ownership",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-17",
+        "title": "Summary",
+        "source": "veritas-plan.json"
+      }
+    ],
+    "stories": [
+      {
+        "id": "F36-05-001",
+        "title": "Evaluation Model",
+        "feature_id": "F36-05",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-07-001",
+        "title": "Prerequisites",
+        "feature_id": "F36-07",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-07-002",
+        "title": "Environment Variables",
+        "feature_id": "F36-07",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-07-003",
+        "title": "Run Smoke Suite",
+        "feature_id": "F36-07",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-07-004",
+        "title": "Run All Suites",
+        "feature_id": "F36-07",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-08-001",
+        "title": "Smoke (PR Gate)",
+        "feature_id": "F36-08",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-08-002",
+        "title": "Golden (Regression)",
+        "feature_id": "F36-08",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-08-003",
+        "title": "ATLAS Adversarial Suites",
+        "feature_id": "F36-08",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-10-001",
+        "title": "Directory Structure",
+        "feature_id": "F36-10",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-10-002",
+        "title": "Example manifest.json",
+        "feature_id": "F36-10",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-11-001",
+        "title": "PR Gate",
+        "feature_id": "F36-11",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-11-002",
+        "title": "Nightly",
+        "feature_id": "F36-11",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-15-001",
+        "title": "Phase 2",
+        "feature_id": "F36-15",
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-15-002",
+        "title": "Phase 3",
+        "feature_id": "F36-15",
+        "source": "veritas-plan.json"
+      }
+    ],
+    "tasks": [
+      {
+        "id": "F36-08-003-T01",
+        "title": "Defense Evasion",
+        "story_id": "F36-08-003",
+        "feature_id": "F36-08",
+        "done": false,
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-08-003-T02",
+        "title": "Discovery",
+        "story_id": "F36-08-003",
+        "feature_id": "F36-08",
+        "done": false,
+        "source": "veritas-plan.json"
+      },
+      {
+        "id": "F36-08-003-T03",
+        "title": "Exfiltration",
+        "story_id": "F36-08-003",
+        "feature_id": "F36-08",
+        "done": false,
+        "source": "veritas-plan.json"
+      }
+    ],
+    "acceptance": [],
+    "declared_status": {}
+  },
+  "actual": {
+    "artifacts": [
+      {
+        "path": ".env.example",
+        "type": "other",
+        "story_tags": []
+      },
+      {
+        "path": ".gitignore",
+        "type": "other",
+        "story_tags": []
+      },
+      {
+        "path": "ado-artifacts.json",
+        "type": "data",
+        "story_tags": []
+      },
+      {
+        "path": "ado-import.ps1",
+        "type": "code",
+        "story_tags": []
+      },
+      {
+        "path": "ATLAS-MAPPING.md",
+        "type": "doc",
+        "story_tags": []
+      },
+      {
+        "path": "PLAN.md",
+        "type": "doc",
+        "story_tags": []
+      },
+      {
+        "path": "README.md",
+        "type": "doc",
+        "story_tags": []
+      },
+      {
+        "path": "STATUS.md",
+        "type": "doc",
+        "story_tags": []
+      },
+      {
+        "path": "STATUS.pdf",
+        "type": "other",
+        "story_tags": []
+      },
+      {
+        "path": ".github/copilot-instructions.md",
+        "type": "doc",
+        "story_tags": []
+      },
+      {
+        "path": "docs/ADDING-TESTS.md",
+        "type": "doc",
+        "story_tags": []
+      },
+      {
+        "path": "docs/ARCHITECTURE.md",
+        "type": "doc",
+        "story_tags": []
+      },
+      {
+        "path": "docs/ATLAS-MAPPING.md",
+        "type": "doc",
+        "story_tags": []
+      },
+      {
+        "path": "scripts/build-evidence-pack.ps1",
+        "type": "code",
+        "story_tags": []
+      },
+      {
+        "path": "scripts/run-evals.ps1",
+        "type": "code",
+        "story_tags": []
+      },
+      {
+        "path": ".github/copilot-skills/00-skill-index.skill.md",
+        "type": "doc",
+        "story_tags": []
+      },
+      {
+        "path": ".github/workflows/redteam-nightly.yml",
+        "type": "config",
+        "story_tags": []
+      },
+      {
+        "path": ".github/workflows/redteam-smoke.yml",
+        "type": "config",
+        "story_tags": []
+      },
+      {
+        "path": "docs/evidence-pack/README.md",
+        "type": "doc",
+        "story_tags": []
+      },
+      {
+        "path": "eval/promptfoo/package-lock.json",
+        "type": "data",
+        "story_tags": []
+      },
+      {
+        "path": "eval/promptfoo/package.json",
+        "type": "data",
+        "story_tags": []
+      },
+      {
+        "path": "eval/promptfoo/promptfooconfig.base.yaml",
+        "type": "config",
+        "story_tags": []
+      },
+      {
+        "path": "eval/promptfoo/test-results.txt",
+        "type": "other",
+        "story_tags": []
+      },
+      {
+        "path": "eval/promptfoo/vitest.config.js",
+        "type": "code",
+        "story_tags": []
+      },
+      {
+        "path": "eval/promptfoo/assertions/deterministic.js",
+        "type": "code",
+        "story_tags": [
+          "F36-05-001",
+          "F36-07-001",
+          "F36-07-002",
+          "F36-07-003",
+          "F36-07-004",
+          "F36-08-001",
+          "F36-08-002",
+          "F36-08-003",
+          "F36-10-001",
+          "F36-10-002",
+          "F36-11-001",
+          "F36-11-002",
+          "F36-15-001",
+          "F36-15-002"
+        ]
+      },
+      {
+        "path": "eval/promptfoo/providers/eva-http.js",
+        "type": "code",
+        "story_tags": []
+      },
+      {
+        "path": "eval/promptfoo/suites/atlas-defense-evasion.yaml",
+        "type": "config",
+        "story_tags": []
+      },
+      {
+        "path": "eval/promptfoo/suites/atlas-discovery.yaml",
+        "type": "config",
+        "story_tags": []
+      },
+      {
+        "path": "eval/promptfoo/suites/atlas-exfiltration.yaml",
+        "type": "config",
+        "story_tags": []
+      },
+      {
+        "path": "eval/promptfoo/suites/golden.yaml",
+        "type": "config",
+        "story_tags": []
+      },
+      {
+        "path": "eval/promptfoo/suites/smoke.yaml",
+        "type": "config",
+        "story_tags": []
+      },
+      {
+        "path": "eval/promptfoo/results/.gitkeep",
+        "type": "other",
+        "story_tags": []
+      },
+      {
+        "path": "eval/promptfoo/__tests__/deterministic.test.js",
+        "type": "test",
+        "story_tags": [],
+        "is_test": true
+      },
+      {
+        "path": "eval/promptfoo/__tests__/eva-http.test.js",
+        "type": "test",
+        "story_tags": [],
+        "is_test": true
+      }
+    ],
+    "story_artifact_map": {
+      "F36-05-001": {
+        "artifacts": [
+          {
+            "path": "eval/promptfoo/assertions/deterministic.js",
+            "type": "code",
+            "story_tags": [
+              "F36-05-001",
+              "F36-07-001",
+              "F36-07-002",
+              "F36-07-003",
+              "F36-07-004",
+              "F36-08-001",
+              "F36-08-002",
+              "F36-08-003",
+              "F36-10-001",
+              "F36-10-002",
+              "F36-11-001",
+              "F36-11-002",
+              "F36-15-001",
+              "F36-15-002"
+            ]
+          }
+        ]
+      },
+      "F36-07-001": {
+        "artifacts": [
+          {
+            "path": "eval/promptfoo/assertions/deterministic.js",
+            "type": "code",
+            "story_tags": [
+              "F36-05-001",
+              "F36-07-001",
+              "F36-07-002",
+              "F36-07-003",
+              "F36-07-004",
+              "F36-08-001",
+              "F36-08-002",
+              "F36-08-003",
+              "F36-10-001",
+              "F36-10-002",
+              "F36-11-001",
+              "F36-11-002",
+              "F36-15-001",
+              "F36-15-002"
+            ]
+          }
+        ]
+      },
+      "F36-07-002": {
+        "artifacts": [
+          {
+            "path": "eval/promptfoo/assertions/deterministic.js",
+            "type": "code",
+            "story_tags": [
+              "F36-05-001",
+              "F36-07-001",
+              "F36-07-002",
+              "F36-07-003",
+              "F36-07-004",
+              "F36-08-001",
+              "F36-08-002",
+              "F36-08-003",
+              "F36-10-001",
+              "F36-10-002",
+              "F36-11-001",
+              "F36-11-002",
+              "F36-15-001",
+              "F36-15-002"
+            ]
+          }
+        ]
+      },
+      "F36-07-003": {
+        "artifacts": [
+          {
+            "path": "eval/promptfoo/assertions/deterministic.js",
+            "type": "code",
+            "story_tags": [
+              "F36-05-001",
+              "F36-07-001",
+              "F36-07-002",
+              "F36-07-003",
+              "F36-07-004",
+              "F36-08-001",
+              "F36-08-002",
+              "F36-08-003",
+              "F36-10-001",
+              "F36-10-002",
+              "F36-11-001",
+              "F36-11-002",
+              "F36-15-001",
+              "F36-15-002"
+            ]
+          }
+        ]
+      },
+      "F36-07-004": {
+        "artifacts": [
+          {
+            "path": "eval/promptfoo/assertions/deterministic.js",
+            "type": "code",
+            "story_tags": [
+              "F36-05-001",
+              "F36-07-001",
+              "F36-07-002",
+              "F36-07-003",
+              "F36-07-004",
+              "F36-08-001",
+              "F36-08-002",
+              "F36-08-003",
+              "F36-10-001",
+              "F36-10-002",
+              "F36-11-001",
+              "F36-11-002",
+              "F36-15-001",
+              "F36-15-002"
+            ]
+          }
+        ]
+      },
+      "F36-08-001": {
+        "artifacts": [
+          {
+            "path": "eval/promptfoo/assertions/deterministic.js",
+            "type": "code",
+            "story_tags": [
+              "F36-05-001",
+              "F36-07-001",
+              "F36-07-002",
+              "F36-07-003",
+              "F36-07-004",
+              "F36-08-001",
+              "F36-08-002",
+              "F36-08-003",
+              "F36-10-001",
+              "F36-10-002",
+              "F36-11-001",
+              "F36-11-002",
+              "F36-15-001",
+              "F36-15-002"
+            ]
+          }
+        ]
+      },
+      "F36-08-002": {
+        "artifacts": [
+          {
+            "path": "eval/promptfoo/assertions/deterministic.js",
+            "type": "code",
+            "story_tags": [
+              "F36-05-001",
+              "F36-07-001",
+              "F36-07-002",
+              "F36-07-003",
+              "F36-07-004",
+              "F36-08-001",
+              "F36-08-002",
+              "F36-08-003",
+              "F36-10-001",
+              "F36-10-002",
+              "F36-11-001",
+              "F36-11-002",
+              "F36-15-001",
+              "F36-15-002"
+            ]
+          }
+        ]
+      },
+      "F36-08-003": {
+        "artifacts": [
+          {
+            "path": "eval/promptfoo/assertions/deterministic.js",
+            "type": "code",
+            "story_tags": [
+              "F36-05-001",
+              "F36-07-001",
+              "F36-07-002",
+              "F36-07-003",
+              "F36-07-004",
+              "F36-08-001",
+              "F36-08-002",
+              "F36-08-003",
+              "F36-10-001",
+              "F36-10-002",
+              "F36-11-001",
+              "F36-11-002",
+              "F36-15-001",
+              "F36-15-002"
+            ]
+          }
+        ]
+      },
+      "F36-10-001": {
+        "artifacts": [
+          {
+            "path": "eval/promptfoo/assertions/deterministic.js",
+            "type": "code",
+            "story_tags": [
+              "F36-05-001",
+              "F36-07-001",
+              "F36-07-002",
+              "F36-07-003",
+              "F36-07-004",
+              "F36-08-001",
+              "F36-08-002",
+              "F36-08-003",
+              "F36-10-001",
+              "F36-10-002",
+              "F36-11-001",
+              "F36-11-002",
+              "F36-15-001",
+              "F36-15-002"
+            ]
+          }
+        ]
+      },
+      "F36-10-002": {
+        "artifacts": [
+          {
+            "path": "eval/promptfoo/assertions/deterministic.js",
+            "type": "code",
+            "story_tags": [
+              "F36-05-001",
+              "F36-07-001",
+              "F36-07-002",
+              "F36-07-003",
+              "F36-07-004",
+              "F36-08-001",
+              "F36-08-002",
+              "F36-08-003",
+              "F36-10-001",
+              "F36-10-002",
+              "F36-11-001",
+              "F36-11-002",
+              "F36-15-001",
+              "F36-15-002"
+            ]
+          }
+        ]
+      },
+      "F36-11-001": {
+        "artifacts": [
+          {
+            "path": "eval/promptfoo/assertions/deterministic.js",
+            "type": "code",
+            "story_tags": [
+              "F36-05-001",
+              "F36-07-001",
+              "F36-07-002",
+              "F36-07-003",
+              "F36-07-004",
+              "F36-08-001",
+              "F36-08-002",
+              "F36-08-003",
+              "F36-10-001",
+              "F36-10-002",
+              "F36-11-001",
+              "F36-11-002",
+              "F36-15-001",
+              "F36-15-002"
+            ]
+          }
+        ]
+      },
+      "F36-11-002": {
+        "artifacts": [
+          {
+            "path": "eval/promptfoo/assertions/deterministic.js",
+            "type": "code",
+            "story_tags": [
+              "F36-05-001",
+              "F36-07-001",
+              "F36-07-002",
+              "F36-07-003",
+              "F36-07-004",
+              "F36-08-001",
+              "F36-08-002",
+              "F36-08-003",
+              "F36-10-001",
+              "F36-10-002",
+              "F36-11-001",
+              "F36-11-002",
+              "F36-15-001",
+              "F36-15-002"
+            ]
+          }
+        ]
+      },
+      "F36-15-001": {
+        "artifacts": [
+          {
+            "path": "eval/promptfoo/assertions/deterministic.js",
+            "type": "code",
+            "story_tags": [
+              "F36-05-001",
+              "F36-07-001",
+              "F36-07-002",
+              "F36-07-003",
+              "F36-07-004",
+              "F36-08-001",
+              "F36-08-002",
+              "F36-08-003",
+              "F36-10-001",
+              "F36-10-002",
+              "F36-11-001",
+              "F36-11-002",
+              "F36-15-001",
+              "F36-15-002"
+            ]
+          }
+        ]
+      },
+      "F36-15-002": {
+        "artifacts": [
+          {
+            "path": "eval/promptfoo/assertions/deterministic.js",
+            "type": "code",
+            "story_tags": [
+              "F36-05-001",
+              "F36-07-001",
+              "F36-07-002",
+              "F36-07-003",
+              "F36-07-004",
+              "F36-08-001",
+              "F36-08-002",
+              "F36-08-003",
+              "F36-10-001",
+              "F36-10-002",
+              "F36-11-001",
+              "F36-11-002",
+              "F36-15-001",
+              "F36-15-002"
+            ]
+          }
+        ]
+      }
+    },
+    "commit_evidence_map": {}
+  }
+}

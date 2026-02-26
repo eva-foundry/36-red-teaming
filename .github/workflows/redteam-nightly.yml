@@ -1,0 +1,135 @@
+﻿name: Red Team - Nightly Full Suite
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Daily at 2 AM UTC
+  workflow_dispatch:
+
+env:
+  EVA_ASK_URL: ${{ secrets.EVA_ASK_URL_PROD }}
+  EVA_HEADERS_JSON: ${{ secrets.EVA_HEADERS_JSON }}
+
+jobs:
+  full-evaluation:
+    name: Run Full Evaluation
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Promptfoo
+        run: npm install -g promptfoo
+
+      - name: Install Node dependencies
+        working-directory: eva-foundation/36-red-teaming/eval/promptfoo
+        run: npm ci
+
+      - name: Run assertion unit tests
+        working-directory: eva-foundation/36-red-teaming/eval/promptfoo
+        run: npx vitest run --reporter=verbose
+
+      - name: Setup PowerShell
+        shell: pwsh
+        run: |
+          Write-Host "PowerShell version: $($PSVersionTable.PSVersion)"
+
+      - name: Run all suites
+        shell: pwsh
+        working-directory: eva-foundation/36-red-teaming
+        run: |
+          ./scripts/run-evals.ps1 -Suite all -BuildEvidence -EnvironmentName "production" -GitCommit "${{ github.sha }}"
+
+      - name: Upload evidence pack
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-pack-${{ github.run_id }}
+          path: eva-foundation/36-red-teaming/docs/evidence-pack/output/
+
+      - name: Upload to Azure Storage
+        if: always()
+        env:
+          AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+        run: |
+          # Install Azure CLI if needed
+          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+          
+          # Upload evidence pack to Azure Blob Storage
+          PACK_DIR=$(ls -t eva-foundation/36-red-teaming/docs/evidence-pack/output/ | head -1)
+          az storage blob upload-batch \
+            --destination redteam-evidence \
+            --source "eva-foundation/36-red-teaming/docs/evidence-pack/output/$PACK_DIR" \
+            --destination-path "$PACK_DIR" \
+            --connection-string "$AZURE_STORAGE_CONNECTION_STRING"
+
+      - name: Parse results
+        id: results
+        if: always()
+        shell: pwsh
+        working-directory: eva-foundation/36-red-teaming
+        run: |
+          $resultsDir = "eval/promptfoo/results"
+          $totalTests = 0
+          $totalPassed = 0
+          $totalFailed = 0
+          
+          Get-ChildItem -Path $resultsDir -Filter "*-output.json" | ForEach-Object {
+              $data = Get-Content $_.FullName | ConvertFrom-Json
+              $passed = ($data.results | Where-Object { $_.pass }).Count
+              $failed = ($data.results | Where-Object { -not $_.pass }).Count
+              $totalTests += $data.results.Count
+              $totalPassed += $passed
+              $totalFailed += $failed
+          }
+          
+          $passRate = if ($totalTests -gt 0) { [math]::Round(($totalPassed / $totalTests) * 100, 2) } else { 0 }
+          
+          Write-Output "total_tests=$totalTests" >> $env:GITHUB_OUTPUT
+          Write-Output "total_passed=$totalPassed" >> $env:GITHUB_OUTPUT
+          Write-Output "total_failed=$totalFailed" >> $env:GITHUB_OUTPUT
+          Write-Output "pass_rate=$passRate" >> $env:GITHUB_OUTPUT
+
+      - name: Create summary
+        if: always()
+        run: |
+          echo "## [SEARCH] Red Team Nightly Evaluation Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Run ID:** ${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Date:** $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Results Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **Total Tests:** ${{ steps.results.outputs.total_tests }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Passed:** ${{ steps.results.outputs.total_passed }} [PASS]" >> $GITHUB_STEP_SUMMARY
+          echo "- **Failed:** ${{ steps.results.outputs.total_failed }} [FAIL]" >> $GITHUB_STEP_SUMMARY
+          echo "- **Pass Rate:** ${{ steps.results.outputs.pass_rate }}%" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ steps.results.outputs.total_failed }}" -gt 0 ]; then
+            echo "[WARN] **Warning:** Some tests failed. Review the evidence pack for details." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "[PASS] **Success:** All tests passed!" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "::warning::Nightly red team evaluation failed"
+          # TODO: Send Teams/Slack notification
+          # Example:
+          # curl -X POST ${{ secrets.TEAMS_WEBHOOK_URL }} \
+          #   -H "Content-Type: application/json" \
+          #   -d '{"text":"Red team nightly evaluation failed. Check GitHub Actions for details."}'
+
+      - name: Notify on success
+        if: success() && steps.results.outputs.pass_rate < 95
+        run: |
+          echo "::warning::Pass rate below 95%: ${{ steps.results.outputs.pass_rate }}%"
+          # TODO: Send Teams/Slack notification for low pass rate

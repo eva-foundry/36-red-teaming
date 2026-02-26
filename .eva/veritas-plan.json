@@ -1,0 +1,242 @@
+{
+  "schema": "eva.veritas-plan.v1",
+  "generated_at": "2026-02-25T06:37:37.555Z",
+  "generated_from": [
+    "PLAN.md"
+  ],
+  "format_detected": "veritas",
+  "prefix": "F36",
+  "features": [
+    {
+      "id": "F36-01",
+      "title": "?? Overview",
+      "source_heading": "## Feature: ?? Overview [ID=F36-01]",
+      "stories": []
+    },
+    {
+      "id": "F36-02",
+      "title": "?? Security & ATO Context",
+      "source_heading": "## Feature: ?? Security & ATO Context [ID=F36-02]",
+      "stories": []
+    },
+    {
+      "id": "F36-03",
+      "title": "?? Purpose",
+      "source_heading": "## Feature: ?? Purpose [ID=F36-03]",
+      "stories": []
+    },
+    {
+      "id": "F36-04",
+      "title": "?? Principles",
+      "source_heading": "## Feature: ?? Principles [ID=F36-04]",
+      "stories": []
+    },
+    {
+      "id": "F36-05",
+      "title": "??? Architecture",
+      "source_heading": "## Feature: ??? Architecture [ID=F36-05]",
+      "stories": [
+        {
+          "id": "F36-05-001",
+          "title": "Evaluation Model",
+          "feature_id": "F36-05",
+          "source": "heading",
+          "tasks": []
+        }
+      ]
+    },
+    {
+      "id": "F36-06",
+      "title": "?? Project Structure",
+      "source_heading": "## Feature: ?? Project Structure [ID=F36-06]",
+      "stories": []
+    },
+    {
+      "id": "F36-07",
+      "title": "?? Quick Start",
+      "source_heading": "## Feature: ?? Quick Start [ID=F36-07]",
+      "stories": [
+        {
+          "id": "F36-07-001",
+          "title": "Prerequisites",
+          "feature_id": "F36-07",
+          "source": "heading",
+          "tasks": []
+        },
+        {
+          "id": "F36-07-002",
+          "title": "Environment Variables",
+          "feature_id": "F36-07",
+          "source": "heading",
+          "tasks": []
+        },
+        {
+          "id": "F36-07-003",
+          "title": "Run Smoke Suite",
+          "feature_id": "F36-07",
+          "source": "heading",
+          "tasks": []
+        },
+        {
+          "id": "F36-07-004",
+          "title": "Run All Suites",
+          "feature_id": "F36-07",
+          "source": "heading",
+          "tasks": []
+        }
+      ]
+    },
+    {
+      "id": "F36-08",
+      "title": "?? Test Suites",
+      "source_heading": "## Feature: ?? Test Suites [ID=F36-08]",
+      "stories": [
+        {
+          "id": "F36-08-001",
+          "title": "Smoke (PR Gate)",
+          "feature_id": "F36-08",
+          "source": "heading",
+          "tasks": []
+        },
+        {
+          "id": "F36-08-002",
+          "title": "Golden (Regression)",
+          "feature_id": "F36-08",
+          "source": "heading",
+          "tasks": []
+        },
+        {
+          "id": "F36-08-003",
+          "title": "ATLAS Adversarial Suites",
+          "feature_id": "F36-08",
+          "source": "heading",
+          "tasks": [
+            {
+              "id": "F36-08-003-T01",
+              "title": "Defense Evasion",
+              "story_id": "F36-08-003",
+              "feature_id": "F36-08",
+              "done": false,
+              "source": "checklist"
+            },
+            {
+              "id": "F36-08-003-T02",
+              "title": "Discovery",
+              "story_id": "F36-08-003",
+              "feature_id": "F36-08",
+              "done": false,
+              "source": "checklist"
+            },
+            {
+              "id": "F36-08-003-T03",
+              "title": "Exfiltration",
+              "story_id": "F36-08-003",
+              "feature_id": "F36-08",
+              "done": false,
+              "source": "checklist"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "F36-09",
+      "title": "?? Deterministic Assertions",
+      "source_heading": "## Feature: ?? Deterministic Assertions [ID=F36-09]",
+      "stories": []
+    },
+    {
+      "id": "F36-10",
+      "title": "?? Evidence Pack (ATO-Ready)",
+      "source_heading": "## Feature: ?? Evidence Pack (ATO-Ready) [ID=F36-10]",
+      "stories": [
+        {
+          "id": "F36-10-001",
+          "title": "Directory Structure",
+          "feature_id": "F36-10",
+          "source": "heading",
+          "tasks": []
+        },
+        {
+          "id": "F36-10-002",
+          "title": "Example manifest.json",
+          "feature_id": "F36-10",
+          "source": "heading",
+          "tasks": []
+        }
+      ]
+    },
+    {
+      "id": "F36-11",
+      "title": "?? CI/CD Integration",
+      "source_heading": "## Feature: ?? CI/CD Integration [ID=F36-11]",
+      "stories": [
+        {
+          "id": "F36-11-001",
+          "title": "PR Gate",
+          "feature_id": "F36-11",
+          "source": "heading",
+          "tasks": []
+        },
+        {
+          "id": "F36-11-002",
+          "title": "Nightly",
+          "feature_id": "F36-11",
+          "source": "heading",
+          "tasks": []
+        }
+      ]
+    },
+    {
+      "id": "F36-12",
+      "title": "?? Standards Mapping",
+      "source_heading": "## Feature: ?? Standards Mapping [ID=F36-12]",
+      "stories": []
+    },
+    {
+      "id": "F36-13",
+      "title": "?? Non-Goals (MVP)",
+      "source_heading": "## Feature: ?? Non-Goals (MVP) [ID=F36-13]",
+      "stories": []
+    },
+    {
+      "id": "F36-14",
+      "title": "?? Definition of Done (MVP)",
+      "source_heading": "## Feature: ?? Definition of Done (MVP) [ID=F36-14]",
+      "stories": []
+    },
+    {
+      "id": "F36-15",
+      "title": "??? Roadmap",
+      "source_heading": "## Feature: ??? Roadmap [ID=F36-15]",
+      "stories": [
+        {
+          "id": "F36-15-001",
+          "title": "Phase 2",
+          "feature_id": "F36-15",
+          "source": "heading",
+          "tasks": []
+        },
+        {
+          "id": "F36-15-002",
+          "title": "Phase 3",
+          "feature_id": "F36-15",
+          "source": "heading",
+          "tasks": []
+        }
+      ]
+    },
+    {
+      "id": "F36-16",
+      "title": "?? Ownership",
+      "source_heading": "## Feature: ?? Ownership [ID=F36-16]",
+      "stories": []
+    },
+    {
+      "id": "F36-17",
+      "title": "Summary",
+      "source_heading": "## Feature: Summary [ID=F36-17]",
+      "stories": []
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+# EVA Red Team Base Configuration
+# Last Updated: 2026-02-17
+
+description: "EVA Red Team Evaluation - Base Configuration"
+
+providers:
+  - id: file://./providers/eva-http.js
+    config:
+      timeout: 30000
+      retries: 2
+      retryDelay: 1000
+
+# Default test options
+defaultTest:
+  options:
+    transformVars:
+      query: "{{query}}"
+
+# Output configuration
+outputPath: ./results/output.json
+
+# Security: disable cloud sharing
+sharing: false
+
+# Cache configuration (disable in CI)
+cache:
+  enabled: true
+  ttl: 86400  # 24 hours
+
+# Evaluation settings
+maxConcurrency: 1  # Sequential execution to avoid overwhelming backend
+
+# Metadata
+metadata:
+  project: "EVA Red Team"
+  version: "1.0.0"
+  framework: "MITRE ATLAS"
