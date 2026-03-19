@@ -1,445 +1,160 @@
-# GitHub Copilot Instructions -- EVA Red Teaming
+<!-- eva-primed-copilot -->
 
-**Template Version**: 3.2.0
-**Last Updated**: February 25, 2026 10:14 ET
-**Project**: EVA Red Teaming -- Red teaming with Promptfoo
-**Path**: `C:\AICOE\eva-foundry\36-red-teaming\`
-**Stack**: Node.js, Promptfoo
+# GitHub Copilot Instructions -- 36-red-teaming
 
-> This file is the Copilot operating manual for this repository.
-> PART 1 is universal -- identical across all EVA Foundation projects.
-> PART 2 is project-specific -- customise the placeholders before use.
+**Template Version**: 7.0.0 (Session 71 - project authority contract)  
+**Last Updated**: 2026-03-15  
+**Project**: 36-red-teaming  
+**Path**: C:\eva-foundry\36-red-teaming\
 
 ---
 
-## PART 1 -- UNIVERSAL RULES
-> Applies to every EVA Foundation project. Do not modify.
+## Bootstrap First
+
+Before using this file, complete the workspace bootstrap from `C:\eva-foundry\.github\copilot-instructions.md`.
+
+Minimum bootstrap proof:
+
+```powershell
+$session.guide.layers_available.Count
+$session.userGuide.categories.Count
+```
+
+If `$session` is undefined or either call fails, stop and bootstrap first.
 
 ---
 
-### 1. Session Bootstrap (run in this order, every session)
+## Project Role
 
-Before answering any question or writing any code:
+This file is the **project-level operating contract** for `36-red-teaming`.
 
-1. **Establish $base** (ACA primary -- run the bootstrap block in Section 3.1 first):
-   - ACA (24x7, Cosmos-backed, no auth): `https://marco-eva-data-model.livelyflower-7990bc7b.canadacentral.azurecontainerapps.io`
-   - Local dev fallback only: `http://localhost:8010`
-   - `$base` must be set before any model query in this session.
+Use it to capture:
+- what this project is for
+- what local patterns or constraints matter here
+- how local docs should be interpreted after workspace bootstrap
 
-2. **Read this project's governance docs** (in order):
-   - `README.md` -- identity, stack, quick start
-   - `PLAN.md` -- phases, current phase, next tasks
-   - `STATUS.md` -- last session snapshot, open blockers
-   - `ACCEPTANCE.md` -- DoD checklist, quality gates (if exists)
-   - Latest `docs/YYYYMMDD-plan.md` and `docs/YYYYMMDD-findings.md` (if exists)
-
-3. **Read the skills index** (if `.github/copilot-skills/` exists):
-   - List files: `Get-ChildItem .github/copilot-skills/ -Filter "*.skill.md" | Select-Object Name`
-   - Read `00-skill-index.skill.md` or the first skill matching the current task's trigger phrase
-   - Each skill has a `triggers:` YAML block -- match it to the user's intent
-
-4. **Query the data model** for this project's record:
-   ```powershell
-   Invoke-RestMethod "$base/model/projects/{PROJECT_FOLDER}" | Select-Object id, maturity, notes
-   ```
-
-5. **Produce a Session Brief** -- one paragraph: active phase, last test count, next task, open blockers.
-   Do not skip this. Do not start implementing before the brief is written.
+Do not use it to restate the full workspace policy set. Workspace-wide authority stays in `C:\eva-foundry\.github\copilot-instructions.md`.
 
 ---
 
-### 2. DPDCA Execution Loop
+## Read Order
 
-Every session runs this cycle. Do not skip steps.
+After bootstrap, read local material in this order:
 
-```
-Discover  --> synthesise current sprint from plan + findings docs
-Plan      --> pick next unchecked task from yyyymmdd-plan.md checklist
-Do        --> implement -- make the change, do not just describe it
-Check     --> run the project test command (see PART 2); must exit 0
-Act       --> update STATUS.md, PLAN.md, yyyymmdd-plan.md, findings doc
-Loop      --> return to Discover if tasks remain
-```
+1. `README.md` for purpose, setup, and local architecture
+2. `PLAN.md` for current scope and intended work
+3. `STATUS.md` for latest verified state and recent decisions
+4. `ACCEPTANCE.md` for quality gates and done criteria
 
-**Execution Rule**: Make the change. Do not propose, narrate, or ask for permission on a step you can determine yourself. If uncertain about scope, ask one clarifying question then proceed.
+If local docs conflict with API-governed truth, treat the Data Model API as authoritative for governance state and treat local files as working context that must be reconciled.
 
 ---
 
-### 3. EVA Data Model API -- Mandatory Protocol
+## Core Rules
 
-> **GOLDEN RULE**: The `model/*.json` files are an internal implementation detail of the API server.
-> Agents must never read, grep, parse, or reference them directly -- not even to "check" something.
-> The HTTP API is the only interface. One HTTP call beats ten file reads.
-> The API self-documents: `GET /model/agent-guide` returns the complete operating protocol.
-
-> **Full reference**: `C:\AICOE\eva-foundry\37-data-model\USER-GUIDE.md` (v2.5)
-> The model is the single source of truth. One HTTP call beats 10 file reads.
-> Never grep source files for something the model already knows.
-
-#### 3.1  Bootstrap
-
-```powershell
-# Primary -- ACA (24x7 Cosmos-backed, no auth required, always up)
-$base = "https://marco-eva-data-model.livelyflower-7990bc7b.canadacentral.azurecontainerapps.io"
-$h = Invoke-RestMethod "$base/health" -ErrorAction SilentlyContinue
-# Local fallback -- only if ACA is in a rare maintenance window
-if (-not $h) {
-    $base = "http://localhost:8010"
-    $h = Invoke-RestMethod "$base/health" -ErrorAction SilentlyContinue
-    if (-not $h) {
-        $env:PYTHONPATH = "C:\AICOE\eva-foundry\37-data-model"
-        Start-Process "C:\AICOE\.venv\Scripts\python.exe" `
-            "-m uvicorn api.server:app --port 8010 --reload" -WindowStyle Hidden
-        Start-Sleep 4
-    }
-}
-# Readiness check
-$r = Invoke-RestMethod "$base/ready" -ErrorAction SilentlyContinue
-if (-not $r.store_reachable) { Write-Warning "Cosmos unreachable -- check COSMOS_URL/KEY" }
-# The API self-documents -- read the agent guide before doing anything
-Invoke-RestMethod "$base/model/agent-guide"
-# One-call state check -- all 27 layer counts + total objects
-Invoke-RestMethod "$base/model/agent-summary"
-```
-
-**Azure APIM (CI / cloud agents):**
-```powershell
-$base = "https://marco-sandbox-apim.azure-api.net/data-model"
-$hdrs = @{"Ocp-Apim-Subscription-Key" = $env:EVA_APIM_KEY}
-Invoke-RestMethod "$base/model/agent-summary" -Headers $hdrs
-```
-
-#### 3.2  Query Decision Table
-
-| You want to know... | One-turn API call | FORBIDDEN (costs 10 turns) |
-|---|---|---|
-| Browse all layers + objects visually | portal-face `/model` (requires `view:model` permission) | grep model/*.json |
-| Report: overview / endpoint matrix / edge types | portal-face `/model/report` | build ad-hoc queries |
-| All layer counts | `GET /model/agent-summary` | query each layer separately |
-| Object by ID | `GET /model/{layer}/{id}` | grep, file_search |
-| All objects in a layer | `GET /model/{layer}/` | read source files |
-| All ready-to-call endpoints | `GET /model/endpoints/filter?status=implemented` | grep router files |
-| All unimplemented stubs | `GET /model/endpoints/filter?status=stub` | grep router files |
-| Filter ANY other layer | `GET /model/{layer}/` + `Where-Object` client-side | no server filter on non-endpoint layers |
-| What a screen calls | `GET /model/screens/{id}` -> `.api_calls` | read screen source |
-| Auth / feature flag for endpoint | `GET /model/endpoints/{id}` -> `.auth`, `.auth_mode`, `.feature_flag` | grep auth middleware |
-| Where is the route handler | `GET /model/endpoints/{id}` -> `.implemented_in`, `.repo_line` | file_search |
-| Cosmos container schema | `GET /model/containers/{id}` -> `.fields`, `.partition_key` | read Cosmos config |
-| What breaks if container changes | `GET /model/impact/?container=X` | trace imports manually |
-| Relationship graph | `GET /model/graph/?node_id=X&depth=2` | read config files |
-| Services list | `GET /model/services/` -> `obj_id, status, is_active, notes` | services uses obj_id not id; no type/port |
-| Is the process alive? | `GET /health` -> `.status`, `.store`, `.version` | check process list |
-| Is Cosmos reachable? | `GET /health` -> `.store` == "cosmos" means Cosmos-backed | ping Cosmos directly |
-| Browse all layers + objects visually | portal-face `/model` (requires `view:model` permission) | grep model/*.json |
-| Report: overview stats / endpoint matrix / edge types | portal-face `/model/report` | build ad-hoc PowerShell queries |
-
-#### 3.3  PUT Rules -- Read Before Every Write
-
-**Rule 1 -- Capture `row_version` BEFORE mutating (not in USER-GUIDE)**
-Store it before any field changes so the confirm assert can check `previous + 1`.
-```powershell
-$ep      = Invoke-RestMethod "$base/model/endpoints/GET /v1/tags"
-$prev_rv = $ep.row_version   # capture BEFORE mutation
-$ep.status         = "implemented"
-```
-
-**Rule 2 -- Strip audit columns, keep domain fields**
-Exclude: `obj_id`, `layer`, `modified_by`, `modified_at`, `created_by`, `created_at`, `row_version`, `source_file`.
-`is_active` is a domain field -- keep it.
-```powershell
-function Strip-Audit ($obj) {
-    $obj | Select-Object * -ExcludeProperty `
-        obj_id, layer, modified_by, modified_at, created_by, created_at, row_version, source_file
-}
-```
-
-**Rule 3 -- Assign ConvertTo-Json before piping; use -Depth 10 for nested schemas**
-`-Depth 5` silently truncates `request_schema` / `response_schema` objects. Always use `-Depth 10`.
-```powershell
-$body = Strip-Audit $ep | ConvertTo-Json -Depth 10
-Invoke-RestMethod "$base/model/endpoints/GET /v1/tags" `
-    -Method PUT -ContentType "application/json" -Body $body `
-    -Headers @{"X-Actor"="agent:copilot"}
-```
-
-**Rule 4 -- PATCH is not supported** -- always PUT the full object (422 otherwise).
-
-**Rule 5 -- Endpoint id = exact string "METHOD /path"** -- never construct; copy verbatim:
-```powershell
-Invoke-RestMethod "$base/model/endpoints/" |
-    Where-Object { $_.path -like '*translations*' } | Select-Object id, path
-```
-
-#### 3.4  Write Cycle -- Every Model Change
-
-**Preferred -- 3-step (admin/commit = export + assemble + validate in one call):**
-```powershell
-# Step 1 -- PUT
-Invoke-RestMethod "$base/model/endpoints/GET /v1/tags" `
-    -Method PUT -ContentType "application/json" -Body $body `
-    -Headers @{"X-Actor"="agent:copilot"}
-
-# Step 2 -- Canonical confirm: assert all three
-$w = Invoke-RestMethod "$base/model/endpoints/GET /v1/tags"
-$w.row_version   # must equal $prev_rv + 1
-$w.modified_by   # must equal "agent:copilot"
-$w.status        # must equal the value you PUT
-
-# Step 3 -- Close the cycle
-$c = Invoke-RestMethod "$base/model/admin/commit" `
-    -Method POST -Headers @{"Authorization"="Bearer dev-admin"}
-$c.status          # "PASS" = done; "FAIL" = fix violations before merging
-$c.violation_count # 0 = clean
-# ACA note: commit returns status=FAIL with assemble.stderr="Script not found" -- EXPECTED on ACA.
-# PASS conditions on ACA: violation_count=0 AND exported_total matches agent-summary.total AND export_errors.Count=0.
-```
-
-**Manual fallback (if admin/commit unavailable):**
-```
-POST /model/admin/export  ->  scripts/assemble-model.ps1  ->  scripts/validate-model.ps1
-[FAIL] lines block; [WARN] repo_line lines (38+) are pre-existing noise -- ignore
-```
-
-**Validate only (distinguishes new violations from pre-existing noise):**
-```powershell
-$v = Invoke-RestMethod "$base/model/admin/validate" `
-       -Headers @{"Authorization"="Bearer dev-admin"}
-$v.count       # 0 = clean; >0 = new violations to fix NOW
-$v.violations  # the cross-reference FAILs -- fix these before commit
-```
-
-#### 3.5  Fix a Validation FAIL
-
-```
-Pattern: "screen 'X' api_calls references unknown endpoint 'Y'"
-Root cause: api_calls used a wrong or constructed id.
-```
-```powershell
-# Find the exact id  (never construct)
-Invoke-RestMethod "$base/model/endpoints/" |
-    Where-Object { $_.path -like '*conversation*' } | Select-Object id, path
-# Fetch screen, replace bad id, PUT + Strip-Audit + ConvertTo-Json -Depth 10 + commit
-```
-
-#### 3.6  What to Update for Each Source Change
-
-| Source change | Model layers to update |
-|---|---|
-| New FastAPI endpoint | `endpoints` + `schemas` |
-| Stub -> implemented | `endpoints` -- set `status`, `implemented_in`, `repo_line` |
-| New Cosmos container/field | `containers` |
-| New React screen | `screens` + `literals` |
-| New i18n key | `literals` |
-| New hook / component | `hooks` / `components` |
-| New persona / feature flag | `personas` + `feature_flags` |
-| New Azure resource | `infrastructure` |
-| New agent | `agents` |
-
-> **Same-PR rule**: every source change that affects a model object must update the model
-> in the same commit. Never defer. A stale model is worse than no model.
+1. Confirm live API access before governance or synchronization work.
+2. Discover actual build, test, lint, and run commands from repo files instead of assuming defaults.
+3. Preserve existing project patterns unless the task explicitly requires changing them.
+4. Keep edits scoped and evidence-backed.
+5. Store execution evidence in `evidence/` and operational logs in `logs/` when automation or validation is part of the work.
+6. Use Project 48 veritas tooling for governed quality checks when the task materially affects delivery quality.
+7. Inherit context-governance policy from the workspace instructions; do not restate fixed token thresholds locally.
 
 ---
 
-### 4. Encoding and Output Safety
+## Data Model Use
 
-**Windows Enterprise Encoding (cp1252) -- ABSOLUTE RULE**
+Start with the domain views and project record before drilling into specific layers:
+
+```powershell
+Invoke-RestMethod "$($session.base)/model/domain-views"
+Invoke-RestMethod "$($session.base)/model/projects/36-red-teaming"
+```
+
+Use `$session.userGuide.category_instructions` for session, sprint, evidence, governance, observability, and ontology runbooks. Do not hardcode layer counts or static workflow assumptions.
+
+---
+
+## Traceability
+
+When this project uses veritas story linking, tag implementation files with the applicable story and feature identifiers:
 
 ```python
-# [FORBIDDEN] -- causes UnicodeEncodeError in enterprise Windows
-print("success")   # with any emoji or unicode
-
-# [REQUIRED] -- ASCII only
-print("[PASS] Done")   print("[FAIL] Failed")   print("[INFO] Wait...")
+# EVA-STORY: F36-01-001
+# EVA-FEATURE: F36-01
 ```
 
-- All Python scripts: `PYTHONIOENCODING=utf-8` in any .bat wrapper
-- All PowerShell output: `[PASS]` / `[FAIL]` / `[WARN]` / `[INFO]` -- never emoji
-- Machine-readable outputs (JSON, YAML, evidence files): ASCII-only always
-- Markdown docs (README, STATUS, PLAN, ACCEPTANCE, copilot-instructions): ASCII-only -- no emoji anywhere
-
----
-
-### 5. Context Health Protocol
-
-Maintain a mental count of Do steps (file edits, terminal commands, test runs) this session.
-
-| Milestone | Action |
-|---|---|
-| Step 5  | Context health check -- answer 4 questions from memory, verify against state files |
-| Step 10 | Health check + re-read SESSION-STATE.md or STATUS.md |
-| Step 15 | Health check + re-read + state summary aloud |
-| Every 5 after | Repeat step-10 pattern |
-
-**4 health questions:**
-1. What is the active task and its one-line description?
-2. What was the last recorded test count?
-3. What file am I currently editing or about to edit?
-4. Have I run any terminal command I cannot account for?
-
-**Drift signals** -- trigger immediate check:
-- About to search for a file already read this session
-- About to run the full test suite without isolating the failing test first
-- Proposing an approach that contradicts a decision in PLAN.md
-- Uncertainty about which task or sprint is active
-
-**Recovery**: re-read STATUS.md from disk -> run baseline tests -> resume from last verified state.
-
----
-
-### 6. Python Environment
-
-```
-venv exec: C:\AICOE\.venv\Scripts\python.exe
-activate:  C:\AICOE\.venv\Scripts\Activate.ps1
+```javascript
+// EVA-STORY: F36-01-001
+// EVA-FEATURE: F36-01
 ```
 
-Never use bare `python` or `python3`. Always use the full venv path.
+Use timestamped evidence names when saving outputs tied to a story or verification step.
 
 ---
 
-### 7. Azure Account Pattern
+## Project-Owned Context
 
-- **Personal**: `{PERSONAL_SUBSCRIPTION_NAME}` -- sandbox experiments
-- **Professional**: `{PROFESSIONAL_EMAIL}` -- Government of Canada / production resources
-  - Dev subscription:  `{DEV_SUBSCRIPTION_ID}`
-  - Prod subscription: `{PROD_SUBSCRIPTION_ID}`
+This section is intended to be edited by the project team and preserved by foundation reseed operations.
 
-If `az` fails with "subscription doesn't exist":
-```powershell
-az account show --query user.name
-az logout; az login --use-device-code --tenant {TENANT_ID}
-```
+Document only the project-specific facts that do not belong in workspace instructions:
+- domain purpose
+- important dependencies
+- real build and test commands
+- local architectural constraints
+- known exceptions or delivery hazards
 
----
+Replace the placeholders below during project customization.
 
-## PART 2 " PROJECT-SPECIFIC
+**Status**: unknown  
+**Current Phase**: discover  
+**Dependencies**: See README.md, PLAN.md, and project_work records in the data model.  
+**Primary Stack**: [TODO: Update stack]
 
-### Project Lock
+### Local Commands
 
-This file is the copilot-instructions for **36-red-teaming** (EVA Red Teaming).
+List the real commands used in this project:
+- build: [TODO: Add build command]
+- test: [TODO: Add test command]
+- lint: [TODO: Add lint command]
+- run: [TODO: Add run command]
 
-The workspace-level bootstrap rule "Step 1 -- Identify the active project from the currently open file path"
-applies **only at the initial load of this file** (first read at session start).
-Once this file has been loaded, the active project is locked to **36-red-teaming** for the entire session.
-Do NOT re-evaluate project identity from editorContext or terminal CWD on each subsequent request.
-Work state and sprint context are read from `STATUS.md` and `PLAN.md` at bootstrap -- not from this file.
+### Local Patterns
 
----
-> Replace all `{PLACEHOLDER}` values before use. Delete unused sections.
+- [TODO: Add the main project-specific implementation pattern]
+- [TODO: Add the most important integration or deployment pattern]
+- [TODO: Add any local exception or code organization rule]
 
----
+### Local Risks Or Exceptions
 
-### Project Identity
-
-**Name**: EVA Red Teaming
-**Folder**: `C:\AICOE\eva-foundry\36-red-teaming`
-**ADO Epic**: #{ADO_EPIC_ID} -- `{ADO_BOARD_URL}`
-**37-data-model record**: `GET /model/projects/36-red-teaming`
-**Maturity**: {PROJECT_MATURITY}   <!-- empty | poc | active | retired -->
-**Phase**: {CURRENT_PHASE}
-
-**Depends on**:
-- {DEPENDENCY_1} -- {WHY}
-
-**Consumed by**:
-- {CONSUMER_1} -- {HOW}
+- [TODO: Add the main delivery or runtime risk]
+- [TODO: Add the next most important project-specific hazard]
 
 ---
 
-### Stack and Conventions
+## Validation Pattern
 
-```
-{LANGUAGE} {VERSION}
-{FRAMEWORK} {VERSION}
-{KEY_LIB_1}
-```
-
----
-
-### Test Command
-
-```powershell
-{TEST_COMMAND}       # must exit 0 before any commit
-{SMOKE_TEST_COMMAND} # quick smoke test
-```
-
-**Current test count**: {TEST_COUNT} tests -- {COVERAGE}% coverage (as of {DATE})
+Before commit or handoff:
+- run the repo-native validation commands that exist
+- verify changed behavior with the smallest relevant check
+- update `STATUS.md` if the task changed delivery state, scope, or risk
+- save evidence if validation or automation was part of the work
 
 ---
 
-### Key Commands
+## Context Governance
 
-```powershell
-{START_COMMAND}   # start dev server / app
-{BUILD_COMMAND}   # build
-{LINT_COMMAND}    # lint / type check
-```
+Context-governance policy is owned by the workspace instructions.
 
----
-
-### Critical Code Patterns
-
-{DESCRIBE_1_3_PATTERNS_SPECIFIC_TO_THIS_PROJECT}
+- Use the workspace utilization bands and checkpoint guidance.
+- Add project-specific recovery or closure rules only if this repo materially increases continuity risk.
+- Do not hardcode model-window assumptions or fixed token ceilings in project instructions.
 
 ---
 
-### Known Anti-Patterns
+## References
 
-| Do NOT | Do instead |
-|---|---|
-| {ANTI_PATTERN_1} | {CORRECT_APPROACH_1} |
-
----
-
-### Skills in This Project
-
-> If `.github/copilot-skills/` exists:
-> ```powershell
-> Get-ChildItem ".github/copilot-skills" -Filter "*.skill.md" | Select-Object Name
-> ```
-
-| Skill file | Trigger phrases | Purpose |
-|---|---|---|
-| {SKILL_FILE} | {TRIGGERS} | {PURPOSE} |
-
----
-
-### 37-data-model " This Project's Entities
-
-```powershell
-# Screens owned by this app
-Invoke-RestMethod "http://localhost:8010/model/screens/" | Where-Object { $_.app -eq '{APP_NAME}' }
-
-# Endpoints implemented by this project
-Invoke-RestMethod "http://localhost:8010/model/endpoints/" | Where-Object { $_.implemented_in -like '*36-red-teaming*' }
-
-# Feature flags gating this project
-Invoke-RestMethod "http://localhost:8010/model/feature_flags/" | Where-Object { $_.id -like '*{FEATURE_PREFIX}*' }
-```
-
----
-
-### Deployment
-
-**Environment**: {DEV_ENV_URL} / {PROD_ENV_URL}
-**Deploy**: `{DEPLOY_COMMAND}`
-**CI**: `{CI_PIPELINE_URL}`
-
----
-
-## PART 3 -- QUALITY GATES
-
-All must pass before merging a PR:
-
-- [ ] Test command exits 0
-- [ ] `validate-model.ps1` exits 0 (if any model layer was changed)
-- [ ] No [FORBIDDEN] encoding patterns in new code
-- [ ] STATUS.md updated with session summary
-- [ ] PLAN.md reflects actual remaining work
-- [ ] If new screen / endpoint / component added: model PUT + write cycle closed
-
----
-
-*Source template*: `C:\AICOE\eva-foundry\07-foundation-layer\02-design\artifact-templates\copilot-instructions-template.md` v3.2.0
-*Project 07 README*: `C:\AICOE\eva-foundry\07-foundation-layer\README.md`
-*EVA Data Model USER-GUIDE*: `C:\AICOE\eva-foundry\37-data-model\USER-GUIDE.md`
+- Workspace authority: C:\eva-foundry\.github\copilot-instructions.md
+- Data model guide: C:\eva-foundry\37-data-model\USER-GUIDE.md
+- Category runbooks: C:\eva-foundry\37-data-model\docs\CATEGORY-RUNBOOK-EXAMPLES.md
+- Local governance: README.md -> PLAN.md -> STATUS.md -> ACCEPTANCE.md

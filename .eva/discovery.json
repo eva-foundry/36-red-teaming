@@ -1,13 +1,13 @@
 {
   "meta": {
     "schema": "eva.discovery.v2",
-    "generated_at": "2026-02-25T06:37:38.041Z",
-    "repo": "C:\\AICOE\\eva-foundation\\36-red-teaming"
+    "generated_at": "2026-03-08T00:46:44.048Z",
+    "repo": "C:\\eva-foundry\\eva-foundry\\36-red-teaming"
   },
   "project": null,
   "planned": {
     "epic": {
-      "title": "🧠 EVA Project 36: Red Teaming & Evaluation Framework",
+      "title": "36-red-teaming",
       "source": "README.md"
     },
     "features": [
@@ -215,13 +215,13 @@
   "actual": {
     "artifacts": [
       {
-        "path": ".env.example",
+        "path": ".gitignore",
         "type": "other",
         "story_tags": []
       },
       {
-        "path": ".gitignore",
-        "type": "other",
+        "path": "ACCEPTANCE.md",
+        "type": "doc",
         "story_tags": []
       },
       {
@@ -235,8 +235,18 @@
         "story_tags": []
       },
       {
-        "path": "ATLAS-MAPPING.md",
+        "path": "CODE_OF_CONDUCT.md",
         "type": "doc",
+        "story_tags": []
+      },
+      {
+        "path": "CONTRIBUTING.md",
+        "type": "doc",
+        "story_tags": []
+      },
+      {
+        "path": "LICENSE",
+        "type": "other",
         "story_tags": []
       },
       {
@@ -245,7 +255,7 @@
         "story_tags": []
       },
       {
-        "path": "README.md",
+        "path": "SECURITY.md",
         "type": "doc",
         "story_tags": []
       },
@@ -265,73 +275,13 @@
         "story_tags": []
       },
       {
-        "path": "docs/ADDING-TESTS.md",
-        "type": "doc",
-        "story_tags": []
-      },
-      {
-        "path": "docs/ARCHITECTURE.md",
-        "type": "doc",
-        "story_tags": []
-      },
-      {
-        "path": "docs/ATLAS-MAPPING.md",
-        "type": "doc",
-        "story_tags": []
-      },
-      {
-        "path": "scripts/build-evidence-pack.ps1",
-        "type": "code",
-        "story_tags": []
-      },
-      {
-        "path": "scripts/run-evals.ps1",
-        "type": "code",
-        "story_tags": []
-      },
-      {
         "path": ".github/copilot-skills/00-skill-index.skill.md",
         "type": "doc",
         "story_tags": []
       },
       {
-        "path": ".github/workflows/redteam-nightly.yml",
-        "type": "config",
-        "story_tags": []
-      },
-      {
-        "path": ".github/workflows/redteam-smoke.yml",
-        "type": "config",
-        "story_tags": []
-      },
-      {
-        "path": "docs/evidence-pack/README.md",
-        "type": "doc",
-        "story_tags": []
-      },
-      {
-        "path": "eval/promptfoo/package-lock.json",
-        "type": "data",
-        "story_tags": []
-      },
-      {
         "path": "eval/promptfoo/package.json",
         "type": "data",
-        "story_tags": []
-      },
-      {
-        "path": "eval/promptfoo/promptfooconfig.base.yaml",
-        "type": "config",
-        "story_tags": []
-      },
-      {
-        "path": "eval/promptfoo/test-results.txt",
-        "type": "other",
-        "story_tags": []
-      },
-      {
-        "path": "eval/promptfoo/vitest.config.js",
-        "type": "code",
         "story_tags": []
       },
       {
@@ -353,53 +303,6 @@
           "F36-15-001",
           "F36-15-002"
         ]
-      },
-      {
-        "path": "eval/promptfoo/providers/eva-http.js",
-        "type": "code",
-        "story_tags": []
-      },
-      {
-        "path": "eval/promptfoo/suites/atlas-defense-evasion.yaml",
-        "type": "config",
-        "story_tags": []
-      },
-      {
-        "path": "eval/promptfoo/suites/atlas-discovery.yaml",
-        "type": "config",
-        "story_tags": []
-      },
-      {
-        "path": "eval/promptfoo/suites/atlas-exfiltration.yaml",
-        "type": "config",
-        "story_tags": []
-      },
-      {
-        "path": "eval/promptfoo/suites/golden.yaml",
-        "type": "config",
-        "story_tags": []
-      },
-      {
-        "path": "eval/promptfoo/suites/smoke.yaml",
-        "type": "config",
-        "story_tags": []
-      },
-      {
-        "path": "eval/promptfoo/results/.gitkeep",
-        "type": "other",
-        "story_tags": []
-      },
-      {
-        "path": "eval/promptfoo/__tests__/deterministic.test.js",
-        "type": "test",
-        "story_tags": [],
-        "is_test": true
-      },
-      {
-        "path": "eval/promptfoo/__tests__/eva-http.test.js",
-        "type": "test",
-        "story_tags": [],
-        "is_test": true
       }
     ],
     "story_artifact_map": {
@@ -740,6 +643,7 @@
         ]
       }
     },
-    "commit_evidence_map": {}
+    "commit_evidence_map": {},
+    "code_complexity": null
   }
 }

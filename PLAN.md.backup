@@ -1,0 +1,79 @@
+<!-- eva-primed-plan -->
+
+## EVA Ecosystem Tools
+
+- Data model: GET http://localhost:8010/model/projects/36-red-teaming
+- 29-foundry agents: C:\eva-foundry\eva-foundation\29-foundry\agents\
+- 48-eva-veritas audit: run audit_repo MCP tool
+
+---
+
+# Project Plan
+
+<!-- veritas-normalized 2026-02-25 prefix=F36 source=README.md -->
+
+## Feature: ?? Overview [ID=F36-01]
+
+## Feature: ?? Security & ATO Context [ID=F36-02]
+
+## Feature: ?? Purpose [ID=F36-03]
+
+## Feature: ?? Principles [ID=F36-04]
+
+## Feature: ??? Architecture [ID=F36-05]
+
+### Story: Evaluation Model [ID=F36-05-001]
+
+## Feature: ?? Project Structure [ID=F36-06]
+
+## Feature: ?? Quick Start [ID=F36-07]
+
+### Story: Prerequisites [ID=F36-07-001]
+
+### Story: Environment Variables [ID=F36-07-002]
+
+### Story: Run Smoke Suite [ID=F36-07-003]
+
+### Story: Run All Suites [ID=F36-07-004]
+
+## Feature: ?? Test Suites [ID=F36-08]
+
+### Story: Smoke (PR Gate) [ID=F36-08-001]
+
+### Story: Golden (Regression) [ID=F36-08-002]
+
+### Story: ATLAS Adversarial Suites [ID=F36-08-003]
+
+- [ ] Defense Evasion [ID=F36-08-003-T01]
+- [ ] Discovery [ID=F36-08-003-T02]
+- [ ] Exfiltration [ID=F36-08-003-T03]
+
+## Feature: ?? Deterministic Assertions [ID=F36-09]
+
+## Feature: ?? Evidence Pack (ATO-Ready) [ID=F36-10]
+
+### Story: Directory Structure [ID=F36-10-001]
+
+### Story: Example manifest.json [ID=F36-10-002]
+
+## Feature: ?? CI/CD Integration [ID=F36-11]
+
+### Story: PR Gate [ID=F36-11-001]
+
+### Story: Nightly [ID=F36-11-002]
+
+## Feature: ?? Standards Mapping [ID=F36-12]
+
+## Feature: ?? Non-Goals (MVP) [ID=F36-13]
+
+## Feature: ?? Definition of Done (MVP) [ID=F36-14]
+
+## Feature: ??? Roadmap [ID=F36-15]
+
+### Story: Phase 2 [ID=F36-15-001]
+
+### Story: Phase 3 [ID=F36-15-002]
+
+## Feature: ?? Ownership [ID=F36-16]
+
+## Feature: Summary [ID=F36-17]

@@ -1,0 +1,742 @@
+{
+  "meta": {
+    "schema": "eva.export-to-model.v1",
+    "generated_at": "2026-03-08T00:47:04.107Z",
+    "project_id": "36-red-teaming",
+    "source_files": [
+      "STATUS.md",
+      "PLAN.md"
+    ],
+    "discovery_path": "C:\\eva-foundry\\eva-foundry\\36-red-teaming\\.eva\\discovery.json",
+    "reconciliation_path": "C:\\eva-foundry\\eva-foundry\\36-red-teaming\\.eva\\reconciliation.json",
+    "layers_selected": [
+      "wbs",
+      "evidence",
+      "decisions",
+      "risks"
+    ]
+  },
+  "wbs": [
+    {
+      "id": "WBS-36redteaming",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": null,
+      "label": "Project: 36-red-teaming",
+      "level": "epic",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 42,
+      "points_done": 0,
+      "stories_total": 14,
+      "stories_done": 0
+    },
+    {
+      "id": "WBS-F01",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-36redteaming",
+      "label": "?? Overview",
+      "level": "feature",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 0,
+      "points_done": 0,
+      "stories_total": 0,
+      "stories_done": 0
+    },
+    {
+      "id": "WBS-F02",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-36redteaming",
+      "label": "?? Security & ATO Context",
+      "level": "feature",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 0,
+      "points_done": 0,
+      "stories_total": 0,
+      "stories_done": 0
+    },
+    {
+      "id": "WBS-F03",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-36redteaming",
+      "label": "?? Purpose",
+      "level": "feature",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 0,
+      "points_done": 0,
+      "stories_total": 0,
+      "stories_done": 0
+    },
+    {
+      "id": "WBS-F04",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-36redteaming",
+      "label": "?? Principles",
+      "level": "feature",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 0,
+      "points_done": 0,
+      "stories_total": 0,
+      "stories_done": 0
+    },
+    {
+      "id": "WBS-F05",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-36redteaming",
+      "label": "??? Architecture",
+      "level": "feature",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 3,
+      "points_done": 0,
+      "stories_total": 1,
+      "stories_done": 0
+    },
+    {
+      "id": "WBS-S001",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-F05",
+      "label": "Evaluation Model",
+      "level": "user_story",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 3,
+      "points_done": 0,
+      "acceptance_criteria": null,
+      "original_story_id": "F36-05-001"
+    },
+    {
+      "id": "WBS-F06",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-36redteaming",
+      "label": "?? Project Structure",
+      "level": "feature",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 0,
+      "points_done": 0,
+      "stories_total": 0,
+      "stories_done": 0
+    },
+    {
+      "id": "WBS-F07",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-36redteaming",
+      "label": "?? Quick Start",
+      "level": "feature",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 12,
+      "points_done": 0,
+      "stories_total": 4,
+      "stories_done": 0
+    },
+    {
+      "id": "WBS-S002",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-F07",
+      "label": "Prerequisites",
+      "level": "user_story",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 3,
+      "points_done": 0,
+      "acceptance_criteria": null,
+      "original_story_id": "F36-07-001"
+    },
+    {
+      "id": "WBS-S003",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-F07",
+      "label": "Environment Variables",
+      "level": "user_story",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 3,
+      "points_done": 0,
+      "acceptance_criteria": null,
+      "original_story_id": "F36-07-002"
+    },
+    {
+      "id": "WBS-S004",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-F07",
+      "label": "Run Smoke Suite",
+      "level": "user_story",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 3,
+      "points_done": 0,
+      "acceptance_criteria": null,
+      "original_story_id": "F36-07-003"
+    },
+    {
+      "id": "WBS-S005",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-F07",
+      "label": "Run All Suites",
+      "level": "user_story",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 3,
+      "points_done": 0,
+      "acceptance_criteria": null,
+      "original_story_id": "F36-07-004"
+    },
+    {
+      "id": "WBS-F08",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-36redteaming",
+      "label": "?? Test Suites",
+      "level": "feature",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 9,
+      "points_done": 0,
+      "stories_total": 3,
+      "stories_done": 0
+    },
+    {
+      "id": "WBS-S006",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-F08",
+      "label": "Smoke (PR Gate)",
+      "level": "user_story",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 3,
+      "points_done": 0,
+      "acceptance_criteria": null,
+      "original_story_id": "F36-08-001"
+    },
+    {
+      "id": "WBS-S007",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-F08",
+      "label": "Golden (Regression)",
+      "level": "user_story",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 3,
+      "points_done": 0,
+      "acceptance_criteria": null,
+      "original_story_id": "F36-08-002"
+    },
+    {
+      "id": "WBS-S008",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-F08",
+      "label": "ATLAS Adversarial Suites",
+      "level": "user_story",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 3,
+      "points_done": 0,
+      "acceptance_criteria": null,
+      "original_story_id": "F36-08-003"
+    },
+    {
+      "id": "WBS-F09",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-36redteaming",
+      "label": "?? Deterministic Assertions",
+      "level": "feature",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 0,
+      "points_done": 0,
+      "stories_total": 0,
+      "stories_done": 0
+    },
+    {
+      "id": "WBS-F10",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-36redteaming",
+      "label": "?? Evidence Pack (ATO-Ready)",
+      "level": "feature",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 6,
+      "points_done": 0,
+      "stories_total": 2,
+      "stories_done": 0
+    },
+    {
+      "id": "WBS-S009",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-F10",
+      "label": "Directory Structure",
+      "level": "user_story",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 3,
+      "points_done": 0,
+      "acceptance_criteria": null,
+      "original_story_id": "F36-10-001"
+    },
+    {
+      "id": "WBS-S010",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-F10",
+      "label": "Example manifest.json",
+      "level": "user_story",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 3,
+      "points_done": 0,
+      "acceptance_criteria": null,
+      "original_story_id": "F36-10-002"
+    },
+    {
+      "id": "WBS-F11",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-36redteaming",
+      "label": "?? CI/CD Integration",
+      "level": "feature",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 6,
+      "points_done": 0,
+      "stories_total": 2,
+      "stories_done": 0
+    },
+    {
+      "id": "WBS-S011",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-F11",
+      "label": "PR Gate",
+      "level": "user_story",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 3,
+      "points_done": 0,
+      "acceptance_criteria": null,
+      "original_story_id": "F36-11-001"
+    },
+    {
+      "id": "WBS-S012",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-F11",
+      "label": "Nightly",
+      "level": "user_story",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 3,
+      "points_done": 0,
+      "acceptance_criteria": null,
+      "original_story_id": "F36-11-002"
+    },
+    {
+      "id": "WBS-F12",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-36redteaming",
+      "label": "?? Standards Mapping",
+      "level": "feature",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 0,
+      "points_done": 0,
+      "stories_total": 0,
+      "stories_done": 0
+    },
+    {
+      "id": "WBS-F13",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-36redteaming",
+      "label": "?? Non-Goals (MVP)",
+      "level": "feature",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 0,
+      "points_done": 0,
+      "stories_total": 0,
+      "stories_done": 0
+    },
+    {
+      "id": "WBS-F14",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-36redteaming",
+      "label": "?? Definition of Done (MVP)",
+      "level": "feature",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 0,
+      "points_done": 0,
+      "stories_total": 0,
+      "stories_done": 0
+    },
+    {
+      "id": "WBS-F15",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-36redteaming",
+      "label": "??? Roadmap",
+      "level": "feature",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 6,
+      "points_done": 0,
+      "stories_total": 2,
+      "stories_done": 0
+    },
+    {
+      "id": "WBS-S013",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-F15",
+      "label": "Phase 2",
+      "level": "user_story",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 3,
+      "points_done": 0,
+      "acceptance_criteria": null,
+      "original_story_id": "F36-15-001"
+    },
+    {
+      "id": "WBS-S014",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-F15",
+      "label": "Phase 3",
+      "level": "user_story",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 3,
+      "points_done": 0,
+      "acceptance_criteria": null,
+      "original_story_id": "F36-15-002"
+    },
+    {
+      "id": "WBS-F16",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-36redteaming",
+      "label": "?? Ownership",
+      "level": "feature",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 0,
+      "points_done": 0,
+      "stories_total": 0,
+      "stories_done": 0
+    },
+    {
+      "id": "WBS-F17",
+      "project_id": "36-red-teaming",
+      "parent_wbs_id": "WBS-36redteaming",
+      "label": "Summary",
+      "level": "feature",
+      "status": "planned",
+      "percent_complete": 0,
+      "points_total": 0,
+      "points_done": 0,
+      "stories_total": 0,
+      "stories_done": 0
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EVD-36redteaming-D3-001",
+      "project_id": "36-red-teaming",
+      "phase": "D3",
+      "story_id": "F36-05-001",
+      "status": "documented",
+      "test_count": 0,
+      "test_passed": 0,
+      "coverage": null,
+      "timestamp": "2026-03-08T00:47:04.110Z",
+      "actor": "agent:veritas",
+      "source": "veritas-export",
+      "evidence_artifacts": [
+        {
+          "path": "eval/promptfoo/assertions/deterministic.js",
+          "type": "code",
+          "is_test": false
+        }
+      ],
+      "commit_refs": []
+    },
+    {
+      "id": "EVD-36redteaming-D3-002",
+      "project_id": "36-red-teaming",
+      "phase": "D3",
+      "story_id": "F36-07-001",
+      "status": "documented",
+      "test_count": 0,
+      "test_passed": 0,
+      "coverage": null,
+      "timestamp": "2026-03-08T00:47:04.110Z",
+      "actor": "agent:veritas",
+      "source": "veritas-export",
+      "evidence_artifacts": [
+        {
+          "path": "eval/promptfoo/assertions/deterministic.js",
+          "type": "code",
+          "is_test": false
+        }
+      ],
+      "commit_refs": []
+    },
+    {
+      "id": "EVD-36redteaming-D3-003",
+      "project_id": "36-red-teaming",
+      "phase": "D3",
+      "story_id": "F36-07-002",
+      "status": "documented",
+      "test_count": 0,
+      "test_passed": 0,
+      "coverage": null,
+      "timestamp": "2026-03-08T00:47:04.110Z",
+      "actor": "agent:veritas",
+      "source": "veritas-export",
+      "evidence_artifacts": [
+        {
+          "path": "eval/promptfoo/assertions/deterministic.js",
+          "type": "code",
+          "is_test": false
+        }
+      ],
+      "commit_refs": []
+    },
+    {
+      "id": "EVD-36redteaming-D3-004",
+      "project_id": "36-red-teaming",
+      "phase": "D3",
+      "story_id": "F36-07-003",
+      "status": "documented",
+      "test_count": 0,
+      "test_passed": 0,
+      "coverage": null,
+      "timestamp": "2026-03-08T00:47:04.110Z",
+      "actor": "agent:veritas",
+      "source": "veritas-export",
+      "evidence_artifacts": [
+        {
+          "path": "eval/promptfoo/assertions/deterministic.js",
+          "type": "code",
+          "is_test": false
+        }
+      ],
+      "commit_refs": []
+    },
+    {
+      "id": "EVD-36redteaming-D3-005",
+      "project_id": "36-red-teaming",
+      "phase": "D3",
+      "story_id": "F36-07-004",
+      "status": "documented",
+      "test_count": 0,
+      "test_passed": 0,
+      "coverage": null,
+      "timestamp": "2026-03-08T00:47:04.110Z",
+      "actor": "agent:veritas",
+      "source": "veritas-export",
+      "evidence_artifacts": [
+        {
+          "path": "eval/promptfoo/assertions/deterministic.js",
+          "type": "code",
+          "is_test": false
+        }
+      ],
+      "commit_refs": []
+    },
+    {
+      "id": "EVD-36redteaming-D3-006",
+      "project_id": "36-red-teaming",
+      "phase": "D3",
+      "story_id": "F36-08-001",
+      "status": "documented",
+      "test_count": 0,
+      "test_passed": 0,
+      "coverage": null,
+      "timestamp": "2026-03-08T00:47:04.110Z",
+      "actor": "agent:veritas",
+      "source": "veritas-export",
+      "evidence_artifacts": [
+        {
+          "path": "eval/promptfoo/assertions/deterministic.js",
+          "type": "code",
+          "is_test": false
+        }
+      ],
+      "commit_refs": []
+    },
+    {
+      "id": "EVD-36redteaming-D3-007",
+      "project_id": "36-red-teaming",
+      "phase": "D3",
+      "story_id": "F36-08-002",
+      "status": "documented",
+      "test_count": 0,
+      "test_passed": 0,
+      "coverage": null,
+      "timestamp": "2026-03-08T00:47:04.110Z",
+      "actor": "agent:veritas",
+      "source": "veritas-export",
+      "evidence_artifacts": [
+        {
+          "path": "eval/promptfoo/assertions/deterministic.js",
+          "type": "code",
+          "is_test": false
+        }
+      ],
+      "commit_refs": []
+    },
+    {
+      "id": "EVD-36redteaming-D3-008",
+      "project_id": "36-red-teaming",
+      "phase": "D3",
+      "story_id": "F36-08-003",
+      "status": "documented",
+      "test_count": 0,
+      "test_passed": 0,
+      "coverage": null,
+      "timestamp": "2026-03-08T00:47:04.110Z",
+      "actor": "agent:veritas",
+      "source": "veritas-export",
+      "evidence_artifacts": [
+        {
+          "path": "eval/promptfoo/assertions/deterministic.js",
+          "type": "code",
+          "is_test": false
+        }
+      ],
+      "commit_refs": []
+    },
+    {
+      "id": "EVD-36redteaming-D3-009",
+      "project_id": "36-red-teaming",
+      "phase": "D3",
+      "story_id": "F36-10-001",
+      "status": "documented",
+      "test_count": 0,
+      "test_passed": 0,
+      "coverage": null,
+      "timestamp": "2026-03-08T00:47:04.110Z",
+      "actor": "agent:veritas",
+      "source": "veritas-export",
+      "evidence_artifacts": [
+        {
+          "path": "eval/promptfoo/assertions/deterministic.js",
+          "type": "code",
+          "is_test": false
+        }
+      ],
+      "commit_refs": []
+    },
+    {
+      "id": "EVD-36redteaming-D3-010",
+      "project_id": "36-red-teaming",
+      "phase": "D3",
+      "story_id": "F36-10-002",
+      "status": "documented",
+      "test_count": 0,
+      "test_passed": 0,
+      "coverage": null,
+      "timestamp": "2026-03-08T00:47:04.110Z",
+      "actor": "agent:veritas",
+      "source": "veritas-export",
+      "evidence_artifacts": [
+        {
+          "path": "eval/promptfoo/assertions/deterministic.js",
+          "type": "code",
+          "is_test": false
+        }
+      ],
+      "commit_refs": []
+    },
+    {
+      "id": "EVD-36redteaming-D3-011",
+      "project_id": "36-red-teaming",
+      "phase": "D3",
+      "story_id": "F36-11-001",
+      "status": "documented",
+      "test_count": 0,
+      "test_passed": 0,
+      "coverage": null,
+      "timestamp": "2026-03-08T00:47:04.110Z",
+      "actor": "agent:veritas",
+      "source": "veritas-export",
+      "evidence_artifacts": [
+        {
+          "path": "eval/promptfoo/assertions/deterministic.js",
+          "type": "code",
+          "is_test": false
+        }
+      ],
+      "commit_refs": []
+    },
+    {
+      "id": "EVD-36redteaming-D3-012",
+      "project_id": "36-red-teaming",
+      "phase": "D3",
+      "story_id": "F36-11-002",
+      "status": "documented",
+      "test_count": 0,
+      "test_passed": 0,
+      "coverage": null,
+      "timestamp": "2026-03-08T00:47:04.110Z",
+      "actor": "agent:veritas",
+      "source": "veritas-export",
+      "evidence_artifacts": [
+        {
+          "path": "eval/promptfoo/assertions/deterministic.js",
+          "type": "code",
+          "is_test": false
+        }
+      ],
+      "commit_refs": []
+    },
+    {
+      "id": "EVD-36redteaming-D3-013",
+      "project_id": "36-red-teaming",
+      "phase": "D3",
+      "story_id": "F36-15-001",
+      "status": "documented",
+      "test_count": 0,
+      "test_passed": 0,
+      "coverage": null,
+      "timestamp": "2026-03-08T00:47:04.110Z",
+      "actor": "agent:veritas",
+      "source": "veritas-export",
+      "evidence_artifacts": [
+        {
+          "path": "eval/promptfoo/assertions/deterministic.js",
+          "type": "code",
+          "is_test": false
+        }
+      ],
+      "commit_refs": []
+    },
+    {
+      "id": "EVD-36redteaming-D3-014",
+      "project_id": "36-red-teaming",
+      "phase": "D3",
+      "story_id": "F36-15-002",
+      "status": "documented",
+      "test_count": 0,
+      "test_passed": 0,
+      "coverage": null,
+      "timestamp": "2026-03-08T00:47:04.110Z",
+      "actor": "agent:veritas",
+      "source": "veritas-export",
+      "evidence_artifacts": [
+        {
+          "path": "eval/promptfoo/assertions/deterministic.js",
+          "type": "code",
+          "is_test": false
+        }
+      ],
+      "commit_refs": []
+    }
+  ],
+  "decisions": [],
+  "risks": [],
+  "summary": {
+    "wbs_count": 32,
+    "evidence_count": 14,
+    "decisions_count": 0,
+    "risks_count": 0,
+    "mti_score": null
+  }
+}

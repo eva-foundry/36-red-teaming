@@ -1,0 +1,23 @@
+{
+  "schema": "eva.export-to-model.evidence.v1",
+  "timestamp": "2026-03-08T00:47:04.126Z",
+  "project_id": "36-red-teaming",
+  "actor": "agent:veritas",
+  "action": "export-to-model",
+  "layers_exported": [
+    "wbs",
+    "evidence",
+    "decisions",
+    "risks"
+  ],
+  "record_counts": {
+    "wbs_count": 32,
+    "evidence_count": 14,
+    "decisions_count": 0,
+    "risks_count": 0,
+    "mti_score": null
+  },
+  "output_path": "C:\\eva-foundry\\eva-foundry\\36-red-teaming\\.eva\\model-export.json",
+  "discovery_path": "C:\\eva-foundry\\eva-foundry\\36-red-teaming\\.eva\\discovery.json",
+  "reconciliation_path": "C:\\eva-foundry\\eva-foundry\\36-red-teaming\\.eva\\reconciliation.json"
+}
