@@ -1,0 +1,25 @@
+description: '36-red-teaming golden promptfoo config'
+
+providers:
+  - id: file://providers/eva-answers-http.js
+    label: EVA Answers HTTP Provider
+    config:
+      lang: en
+
+prompts:
+  - 'Question: {{question}}'
+
+defaultTest:
+  options:
+    transform: output.output
+
+tests: file://suites/golden.yaml
+
+evaluateOptions:
+  maxConcurrency: 3
+  delay: 200
+  showProgressBar: true
+  stopOnFailure: false
+
+outputPath: evidence/golden-latest.json
+sharing: false

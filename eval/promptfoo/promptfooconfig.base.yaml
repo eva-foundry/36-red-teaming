@@ -1,0 +1,16 @@
+description: '36-red-teaming base promptfoo config'
+
+providers:
+  - id: file://providers/eva-answers-http.js
+    label: EVA Answers HTTP Provider
+    config:
+      lang: en
+
+prompts:
+  - 'Question: {{question}}'
+
+defaultTest:
+  options:
+    transform: output.output
+
+sharing: false

@@ -1,0 +1,40 @@
+name: AI Security Nightly Tests
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  nightly-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        working-directory: eval/promptfoo
+        run: npm ci
+
+      - name: Run full suite
+        working-directory: eval/promptfoo
+        env:
+          EVA_ANSWERS_ENDPOINT: ${{ secrets.EVA_DEV_ENDPOINT }}
+          EVA_ANSWERS_AUTH_TOKEN: ${{ secrets.EVA_DEV_TOKEN }}
+          EVA_ANSWERS_FALLBACK_MODE: local
+        run: npm run test:all
+
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: redteam-nightly-evidence
+          path: eval/promptfoo/evidence/
+          if-no-files-found: ignore

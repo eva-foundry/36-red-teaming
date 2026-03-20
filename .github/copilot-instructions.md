@@ -106,29 +106,30 @@ Document only the project-specific facts that do not belong in workspace instruc
 
 Replace the placeholders below during project customization.
 
-**Status**: unknown  
-**Current Phase**: discover  
-**Dependencies**: See README.md, PLAN.md, and project_work records in the data model.  
-**Primary Stack**: [TODO: Update stack]
+**Status**: active scaffold  
+**Current Phase**: foundation / promptfoo harness integration  
+**Dependencies**: Project 58 CyberSec Factory SaaS ingestion, Project 48 Veritas quality gates, EVA Data Model API, Promptfoo CLI, and the EVA Answers HTTP target or local fallback provider.  
+**Primary Stack**: Node.js, Promptfoo, JavaScript/ESM, YAML, GitHub Actions
 
 ### Local Commands
 
 List the real commands used in this project:
-- build: [TODO: Add build command]
-- test: [TODO: Add test command]
-- lint: [TODO: Add lint command]
-- run: [TODO: Add run command]
+- build: none yet; use the promptfoo and evidence scripts directly
+- test: `npm test`, `npm run test:smoke`, `npm run test:golden`, `npm run test:atlas-defense`, `npm run test:atlas-discovery`, `npm run test:atlas-exfil`
+- lint: repo-native markdown and file validation; no project-specific linter is defined yet
+- run: `npm run evidence:build`, `promptfoo eval -c suites/smoke.yaml`
 
 ### Local Patterns
 
-- [TODO: Add the main project-specific implementation pattern]
-- [TODO: Add the most important integration or deployment pattern]
-- [TODO: Add any local exception or code organization rule]
+- Use `file://providers/eva-answers-http.js` as the canonical provider path; it falls back to `local-redteam.js` when `EVA_ANSWERS_ENDPOINT` is absent.
+- Keep promptfoo suites under `eval/promptfoo/suites/` and normalize results through `eval/promptfoo/lib/evidence-generator.js`.
+- Feed normalized findings into `observatory/scanners/promptfoo-adapter.js` so Project 58 can ingest the results as a SaaS risk feed.
 
 ### Local Risks Or Exceptions
 
-- [TODO: Add the main delivery or runtime risk]
-- [TODO: Add the next most important project-specific hazard]
+- Promptfoo and vitest may not be installed locally; fail closed until the eval package is bootstrapped.
+- The EVA Answers endpoint may be missing or unreachable; offline fallback is acceptable for scaffold validation, but live runs must be explicitly configured.
+- Preserve the normalized result shape and observatory adapter contract when changing anything that feeds Project 58.
 
 ---
 

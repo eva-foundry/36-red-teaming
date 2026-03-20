@@ -1,0 +1,52 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-03-19",
+  "mappings": [
+    {
+      "promptfoo_plugin": "prompt-injection",
+      "mitre_atlas": ["AML.TA0007"],
+      "owasp_llm": ["LLM01"],
+      "nist_ai_rmf": ["MEASURE"],
+      "itsg33": ["SI-10"],
+      "severity": 8.5
+    },
+    {
+      "promptfoo_plugin": "jailbreak",
+      "mitre_atlas": ["AML.TA0007", "AML.TA0008"],
+      "owasp_llm": ["LLM01", "LLM02"],
+      "nist_ai_rmf": ["GOVERN", "MEASURE"],
+      "itsg33": ["SI-10", "AC-3"],
+      "severity": 8.0
+    },
+    {
+      "promptfoo_plugin": "pii",
+      "mitre_atlas": ["AML.TA0010"],
+      "owasp_llm": ["LLM06"],
+      "nist_ai_rmf": ["MAP", "MEASURE"],
+      "itsg33": ["SC-28"],
+      "severity": 9.0
+    },
+    {
+      "promptfoo_plugin": "harmful:hate",
+      "mitre_atlas": ["AML.TA0011"],
+      "owasp_llm": ["LLM04"],
+      "nist_ai_rmf": ["GOVERN"],
+      "itsg33": ["AC-3"],
+      "severity": 9.2
+    },
+    {
+      "promptfoo_plugin": "excessive-agency",
+      "mitre_atlas": ["AML.TA0005", "AML.TA0012"],
+      "owasp_llm": ["LLM08"],
+      "nist_ai_rmf": ["MANAGE"],
+      "itsg33": ["CM-5"],
+      "severity": 8.3
+    }
+  ],
+  "severityMapping": {
+    "critical": 9.0,
+    "high": 7.0,
+    "medium": 4.0,
+    "low": 1.0
+  }
+}

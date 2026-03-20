@@ -1,7 +1,5 @@
 # 36-red-teaming
 
-# 36-red-teaming
-
 <!-- Placeholders: 36-red-teaming = project folder name (e.g., "37-data-model", "48-eva-veritas") -->
 
 **Template Version**: v5.0.0 (Session 44 - Governance Template Consolidation)  
@@ -13,29 +11,8 @@
 ## EVA Quick Links
 
 | Resource | Link |
-|----------|------|
-| **Project Record** | `GET https://msub-eva-data-model.victoriousgrass-30debbd3.canadacentral.azurecontainerapps.io/model/projects/36-red-teaming` |
-| **Live Session Data** | `GET .../model/project_work/?project_id=36-red-teaming&$orderby=id%20desc&$limit=10` |
-| **Veritas Audit** | Run `audit_repo` MCP tool on `C:\eva-foundry\36-red-teaming` |
-| **Trust Score** | Run `get_trust_score` MCP tool on `C:\eva-foundry\36-red-teaming` |
-| **Sync to Model** | Run `sync_repo` MCP tool (full paperless DPDCA audit + write-back) |
-| **Governance** | [PLAN.md](./PLAN.md) \| [STATUS.md](./STATUS.md) \| [ACCEPTANCE.md](./ACCEPTANCE.md) |
-| **Instructions** | [.github/copilot-instructions.md](./.github/copilot-instructions.md) |
-
----
-
-
-**Template Version**: v5.0.0 (Session 44 - Governance Template Consolidation)  
-**Part of EVA Foundry Workspace** | [Data Model](https://msub-eva-data-model.victoriousgrass-30debbd3.canadacentral.azurecontainerapps.io/model/projects/36-red-teaming) | [Veritas Audit](#veritas-audit)  
-**Workspace Skills**: @sprint-advance | @progress-report | @gap-report | @sprint-report | @veritas-expert
-
----
-
-## EVA Quick Links
-
-| Resource | Link |
-|----------|------|
-| **Project Record** | `GET https://msub-eva-data-model.victoriousgrass-30debbd3.canadacentral.azurecontainerapps.io/model/projects/36-red-teaming` |
+| --- | --- |
+| **Project Record** | [Project 36 project record](https://msub-eva-data-model.victoriousgrass-30debbd3.canadacentral.azurecontainerapps.io/model/projects/36-red-teaming) |
 | **Live Session Data** | `GET .../model/project_work/?project_id=36-red-teaming&$orderby=id%20desc&$limit=10` |
 | **Veritas Audit** | Run `audit_repo` MCP tool on `C:\eva-foundry\36-red-teaming` |
 | **Trust Score** | Run `get_trust_score` MCP tool on `C:\eva-foundry\36-red-teaming` |
@@ -47,7 +24,7 @@
 
 ## Purpose
 
-**AI Security Observatory: LLM Vulnerability Scanning & Red Teaming using Promptfoo**
+AI Security Observatory: LLM Vulnerability Scanning and Red Teaming using Promptfoo
 
 Project 36 provides automated security testing and vulnerability detection for AI-powered systems, with dual value streams:
 

@@ -10,6 +10,7 @@
     "test:atlas-defense": "promptfoo eval -c suites/atlas-defense-evasion.yaml",
     "test:atlas-discovery": "promptfoo eval -c suites/atlas-discovery.yaml",
     "test:atlas-exfil": "promptfoo eval -c suites/atlas-exfiltration.yaml",
+    "evidence:build": "node scripts/generate-evidence.js",
     "test:all": "npm run test:smoke && npm run test:golden && npm run test:atlas-defense && npm run test:atlas-discovery && npm run test:atlas-exfil",
     "test": "vitest run"
   },

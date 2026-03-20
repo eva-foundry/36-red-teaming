@@ -2,7 +2,7 @@
 
 **Template Version**: v5.0.0 (Session 44 - Governance Template Consolidation)
 **Last Updated**: 2026-03-12 by agent:AIAgentExpert
-**Data Model**: GET https://msub-eva-data-model.victoriousgrass-30debbd3.canadacentral.azurecontainerapps.io/model/projects/36-red-teaming
+**Data Model**: [Project 36 record](https://msub-eva-data-model.victoriousgrass-30debbd3.canadacentral.azurecontainerapps.io/model/projects/36-red-teaming)
 **Veritas Trust**: Run `get_trust_score` MCP tool for current MTI score
 **Workspace Skills**: @sprint-advance | @progress-report | @gap-report | @veritas-expert
 
@@ -28,7 +28,8 @@ Invoke-RestMethod "$base/model/agent-summary"
 ```
 
 For veritas audit:
-```
+
+```powershell
 MCP tool: audit_repo  repo_path=C:\eva-foundry\36-red-teaming
 MCP tool: get_trust_score  repo_path=C:\eva-foundry\36-red-teaming
 ```
@@ -36,6 +37,61 @@ MCP tool: get_trust_score  repo_path=C:\eva-foundry\36-red-teaming
 ---
 
 ## Session Log
+
+### 2026-03-19 -- Local Red-Teaming Scaffold by agent:copilot
+
+**Activity**: Added a deterministic local promptfoo provider, shared assertion re-export, and runnable smoke/golden/ATLAS suite scaffolding.
+
+**Context**: The repository had the assertion helper but no executable promptfoo suites or provider. This first slice makes the package testable without a live backend.
+
+**Deliverables**:
+- ✅ `eval/promptfoo/providers/local-redteam.js`
+- ✅ `eval/promptfoo/assertions/eva-assertions.js`
+- ✅ `eval/promptfoo/suites/smoke.yaml`
+- ✅ `eval/promptfoo/suites/golden.yaml`
+- ✅ `eval/promptfoo/suites/atlas-defense-evasion.yaml`
+- ✅ `eval/promptfoo/suites/atlas-discovery.yaml`
+- ✅ `eval/promptfoo/suites/atlas-exfiltration.yaml`
+- ✅ `eval/promptfoo/tests/deterministic.test.js`
+- ✅ `eval/promptfoo/scripts/generate-evidence.js`
+
+**Key Decisions**:
+1. Use a deterministic local provider first so the harness can be exercised without secrets or a live target.
+2. Keep the suite paths aligned with the existing `package.json` scripts.
+3. Re-export the shared assertion module under the project-friendly `eva-assertions.js` path.
+
+**Next Steps**:
+- [ ] Wire the real HTTP provider for EVA Answers or the chosen red-team target.
+- [ ] Add the framework crosswalk and evidence generator files.
+- [ ] Validate the suites with promptfoo once the CLI/runtime dependencies are installed.
+- [ ] Run `npm run evidence:build` after a promptfoo export to produce a manifest.
+
+### 2026-03-19 -- Promptfoo Runtime and CI Layer by agent:copilot
+
+**Activity**: Added the HTTP provider with live-backend support and local fallback, framework crosswalk, evidence normalizer, observatory adapter, and GitHub Actions smoke/nightly workflows.
+
+**Context**: The repo now has an end-to-end path from promptfoo suites to normalized evidence and CI execution, with offline fallback so the same code runs in local and CI contexts.
+
+**Deliverables**:
+- ✅ `eval/promptfoo/providers/eva-answers-http.js`
+- ✅ `eval/promptfoo/promptfooconfig.base.yaml`
+- ✅ `eval/promptfoo/promptfooconfig.smoke.yaml`
+- ✅ `eval/promptfoo/promptfooconfig.golden.yaml`
+- ✅ `eval/promptfoo/mappings/framework-crosswalk.json`
+- ✅ `eval/promptfoo/lib/evidence-generator.js`
+- ✅ `observatory/scanners/promptfoo-adapter.js`
+- ✅ `.github/workflows/redteam-smoke.yml`
+- ✅ `.github/workflows/redteam-nightly.yml`
+
+**Key Decisions**:
+1. Keep a single provider path that works online or offline.
+2. Normalize promptfoo output into an evidence manifest and observatory adapter now, before expanding the suite library.
+3. Add CI workflows while the harness is still small so the execution contract is visible early.
+
+**Next Steps**:
+- [ ] Expand the framework mapping and suite coverage beyond the initial ATLAS slices.
+- [ ] Add a command or script that turns promptfoo output into an evidence manifest.
+- [ ] Run the smoke suite in a workspace with promptfoo installed.
 
 ### 2026-03-12 -- Foundation Prime & Strategy by agent:AIAgentExpert
 
@@ -105,7 +161,7 @@ MCP tool: get_trust_score  repo_path=C:\eva-foundry\36-red-teaming
 |-------------|--------|-------|
 | **1. Governance Primed** | ✅ DONE | README, STATUS updated; PLAN, ACCEPTANCE, copilot-instructions pending |
 | **2. Promptfoo Harness** | ⏳ IN PROGRESS | package.json ready, suites scaffolded, needs implementation |
-| **3. HTTP Provider** | 📋 PLANNED | `eva-answers-http.js` architecture defined |
+| **3. HTTP Provider** | [ ] PLANNED | `eva-answers-http.js` architecture defined |
 | **4. ATLAS Suites** | 📋 PLANNED | 3 tactics (Defense Evasion, Discovery, Exfiltration), ~45 tests |
 | **5. Evidence Generator** | 📋 PLANNED | `evidence-generator.js` - promptfoo JSON → ATO manifest |
 | **6. Framework Mapper** | 📋 PLANNED | `framework-crosswalk.json` - 50 mappings × 5 frameworks |
@@ -117,7 +173,7 @@ MCP tool: get_trust_score  repo_path=C:\eva-foundry\36-red-teaming
 |-----------|--------|---------|--------|
 | **Smoke suite operational** | PR gate blocks critical findings | Not implemented | 🔴 |
 | **Nightly evidence** | Evidence pack generated daily | Not implemented | 🔴 |
-| **Real vulnerabilities** | 5 discovered in EVA dev |Not implemented | 🔴 |
+| **Real vulnerabilities** | 5 discovered in EVA dev | Not implemented | 🔴 |
 | **MTI Score** | ≥ 70 | Not audited yet | ⚪ |
 
 ---

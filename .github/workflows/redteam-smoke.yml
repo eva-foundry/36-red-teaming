@@ -1,0 +1,44 @@
+name: AI Security Smoke Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'eval/promptfoo/**'
+      - '.github/workflows/redteam-smoke.yml'
+  workflow_dispatch:
+
+jobs:
+  smoke-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        working-directory: eval/promptfoo
+        run: npm ci
+
+      - name: Run smoke suite
+        working-directory: eval/promptfoo
+        env:
+          EVA_ANSWERS_ENDPOINT: ${{ secrets.EVA_DEV_ENDPOINT }}
+          EVA_ANSWERS_AUTH_TOKEN: ${{ secrets.EVA_DEV_TOKEN }}
+          EVA_ANSWERS_FALLBACK_MODE: local
+        run: npm run test:smoke
+
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: redteam-smoke-evidence
+          path: eval/promptfoo/evidence/
+          if-no-files-found: ignore
