@@ -2,7 +2,7 @@
 
 **Template Version**: v5.0.0 (Session 44 - Governance Template Consolidation)
 **Created**: 2026-03-12 by agent:AIAgentExpert
-**Last Updated**: 2026-03-12
+**Last Updated**: 2026-03-24
 **Data Model**: GET https://msub-eva-data-model.victoriousgrass-30debbd3.canadacentral.azurecontainerapps.io/model/projects/36-red-teaming
 **Status**: Foundation Prime
 
@@ -26,6 +26,26 @@
 | AC-10 | Framework mapping complete (5 frameworks) | PENDING |
 | AC-11 | Evidence pack generator operational | PENDING |
 | AC-12 | Project 58 integration tested | PENDING |
+
+---
+
+## Tooling Posture Note
+
+Promptfoo remains the primary execution tool for this project's red-teaming and evaluation harness.
+As of 2026-03-09, Promptfoo announced that it has agreed to be acquired by OpenAI.
+
+Operational interpretation for Project 36:
+
+- Promptfoo remains acceptable because the public announcement states continuity of service,
+    continued maintenance of the open-source suite, and continued support for diverse models and
+    providers.
+- Project 36 must continue to treat Promptfoo as an implementation tool, not as the normative
+    authority for security or governance requirements.
+- Normative framework ownership remains with external and workspace authority surfaces such as
+    `MITRE ATLAS`, `OWASP LLM`, `ITSG-33`, NIST-aligned guidance, and the Project 19 governance
+    catalog.
+- Any future vendor-lock or provider-bias concerns should be handled as a governance review item,
+    not assumed away.
 
 ---
 
@@ -127,6 +147,7 @@ Get-ChildItem -Path "C:\eva-foundry\36-red-teaming" -Recurse -Include *.md,*.ps1
 2. Azure OpenAI provider operational
 3. At least one test suite runs successfully
 4. Evidence files generated
+5. Tooling posture remains provider-aware and framework-driven despite Promptfoo ownership changes
 
 **Status**: PENDING (Sprint 1 implementation)
 
@@ -146,6 +167,8 @@ Measure-Command { promptfoo eval -c test-suites/smoke.yaml --concurrency 5 }
 - [ ] 10-15 critical security tests
 - [ ] GitHub Actions workflow configured
 - [ ] PR blocking on failure
+- [ ] Promptfoo use remains vendor-neutral at the harness level, with framework mapping owned by
+    local crosswalks and governance surfaces
 
 **Status**: PENDING (Story 36-03-002)
 
@@ -166,6 +189,10 @@ node scripts/validate-crosswalk.js
 - [ ] NIST AI RMF: 4 functions, 7 categories, 23 subcategories
 - [ ] ITSG-33: 20 security control families
 - [ ] EU AI Act: Article 15 + Article 52
+
+**Tooling Constraint**:
+- Framework mappings must remain readable and maintainable without depending on Promptfoo vendor
+    ownership for semantic meaning.
 
 **Status**: PENDING (Sprint 2 - Feature 36-04)
 
